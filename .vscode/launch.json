@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug on macOS and Windows",
+      "type": "cppdbg",
+      "request": "launch",
+      "osx": {
+        "program": "${workspaceFolder}/controller",
+        "MIMode": "lldb",
+        "preLaunchTask": "build controller"
+      },
+      "windows": {
+        "program": "${workspaceFolder}\\controller.exe",
+        "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe"
+      },
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "externalConsole": false
+    }
+  ]
+}

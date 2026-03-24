@@ -1,0 +1,20 @@
+# Compiled binaries
+controller
+controller.exe
+*.o
+*.obj
+*.exe
+
+# Debug files
+*.dSYM/
+*.pdb
+*.ilk
+
+# IDE
+.vscode/.browse.c_cpp.db*
+.vscode/ipch/
+.vs/
+
+# OS
+.DS_Store
+Thumbs.db
