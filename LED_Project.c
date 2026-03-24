@@ -26,7 +26,7 @@ void controlLED(FT_HANDLE ftHandle) {
     int pin;                       // Variable to store pin number
     int state;                     // Variable to store pin state
     FT_STATUS ftStatus;            // Variable to store FTDI function status
-    DWORD bytesWritten;            // Variable to store the number of bytes written
+    DWORD bytesWritten = 0;         // Variable to store the number of bytes written
     BYTE outputBuffer = 0x00;      // Initialize with all pins off
 
     while (1) {                    // Infinite loop to continuously ask for user input
