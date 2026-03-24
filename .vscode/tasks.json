@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-controller",
+      "type": "shell",
+      "osx": {
+        "command": "gcc *.c libftd2xx.a -I. -L. -framework CoreFoundation -framework IOKit -o controller -g"
+      },
+      "windows": {
+        "command": "gcc *.c -lftd2xx -o controller.exe -g"
+      },
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ]
+}
