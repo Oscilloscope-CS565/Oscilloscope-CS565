@@ -1,9 +1,13 @@
 # Compiled binaries
 controller
 controller.exe
+blink_test
 *.o
 *.obj
 *.exe
+
+# Static libraries (built, not vendor)
+libioLibrary.a
 
 # Debug files
 *.dSYM/

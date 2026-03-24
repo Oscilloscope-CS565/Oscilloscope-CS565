@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #ifdef _WIN32
-#include <windows.h>c
+#include <windows.h>
 #define usleep(x) Sleep((x) / 1000)
 #else
 #include <unistd.h>
