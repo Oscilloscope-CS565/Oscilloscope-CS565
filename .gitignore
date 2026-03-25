@@ -19,6 +19,10 @@ libioLibrary.a
 .vscode/ipch/
 .vs/
 
+# Documentation
+CLAUDE.md
+docs/
+
 # OS
 .DS_Store
 Thumbs.db
