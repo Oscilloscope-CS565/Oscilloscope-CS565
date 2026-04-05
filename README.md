@@ -1,6 +1,6 @@
 # FT245R Controller - CS565
 
-A C project for controlling the FTDI FT245R (UM245R) USB-to-parallel chip, built for Stevens CS565 (Software Architecture and Component-Based Design).
+A C++ project for controlling the FTDI FT245R (UM245R) USB-to-parallel chip, built for Stevens CS565 (Software Architecture and Component-Based Design).
 
 Figma link: https://www.figma.com/make/zhjeJXZHEork6O5gXgszK4/Untitled?t=eDVLhgxRvg6EaR4i-1
 
@@ -8,17 +8,17 @@ Figma link: https://www.figma.com/make/zhjeJXZHEork6O5gXgszK4/Untitled?t=eDVLhgx
 
 ```
 FT245R/
-├── ioLibrary/                 # Reusable FTDI I/O library (static)
-│   ├── FtdiDevice.h / .c      # Device class: open, close, read, write (wraps all FT_* calls)
-│   ├── ioBuffer.h / .c        # Buffer management (malloc/free)
-│   ├── ioWrite.h  / .c        # Frequency-timed write loop
-│   └── ioRead.h   / .c        # Frequency-timed read loop
-├── main.c                     # Sample app: LED blink test at 1Hz and 2Hz
-├── Makefile                   # Build system
-├── controller.c               # Legacy app: menu-driven controller
-├── LED_Project.c              # Legacy: interactive LED pin control
-├── morse_Project.c            # Legacy: Morse code via LED
-├── ftd2xx.h                   # FTDI D2XX vendor header
+├── ioLibrary/                 # Reusable FTDI I/O library (static, C++)
+│   ├── FtdiDevice.h / .cpp    # Device class: open, close, read, write (wraps all FT_* calls)
+│   ├── ioBuffer.h / .cpp      # Buffer management (malloc/free)
+│   ├── ioWrite.h  / .cpp      # Frequency-timed write loop
+│   └── ioRead.h   / .cpp      # Frequency-timed read loop
+├── main.cpp                   # Sample app: LED blink test at 1Hz and 2Hz
+├── Makefile                   # Build system (g++ -std=c++11)
+├── controller.c               # Legacy app: menu-driven controller (C)
+├── LED_Project.c              # Legacy: interactive LED pin control (C)
+├── morse_Project.c            # Legacy: Morse code via LED (C)
+├── ftd2xx.h                   # FTDI D2XX vendor header (C library, extern "C" compatible)
 ├── WinTypes.h                 # Windows type definitions for macOS/Linux
 ├── libftd2xx.a                # FTDI vendor static library (macOS)
 ├── i386/ & amd64/             # FTDI vendor libraries (Windows)
@@ -31,8 +31,8 @@ FT245R/
 
 ### Compiler
 
-- **macOS**: `brew install gcc` or `xcode-select --install`
-- **Windows**: Install [MSVC Build Tools](https://visualstudio.microsoft.com/downloads/#remote-tools-for-visual-studio-2022) (select "Build Tools for Visual Studio 2022", check Desktop Development)
+- **macOS**: `brew install gcc` or `xcode-select --install` (g++ is included)
+- **Windows**: Install [MSVC Build Tools](https://visualstudio.microsoft.com/downloads/#remote-tools-for-visual-studio-2022) (select "Build Tools for Visual Studio 2022", check Desktop Development with C++)
 
 ### Hardware
 
@@ -64,9 +64,26 @@ make blink_test
 ./blink_test
 ```
 
-This builds `libioLibrary.a` (static library) and links it with `main.c` to produce `blink_test`.
+This compiles 4 C++ source files into `libioLibrary.a` (static library), then links it with `main.cpp` to produce `blink_test`.
 
-### Legacy Controller App
+**Manual build without Make:**
+
+```bash
+# macOS
+g++ -std=c++11 -I. -IioLibrary -g -c ioLibrary/ioBuffer.cpp -o ioLibrary/ioBuffer.o
+g++ -std=c++11 -I. -IioLibrary -g -c ioLibrary/ioRead.cpp -o ioLibrary/ioRead.o
+g++ -std=c++11 -I. -IioLibrary -g -c ioLibrary/ioWrite.cpp -o ioLibrary/ioWrite.o
+g++ -std=c++11 -I. -IioLibrary -g -c ioLibrary/FtdiDevice.cpp -o ioLibrary/FtdiDevice.o
+ar rcs libioLibrary.a ioLibrary/ioBuffer.o ioLibrary/ioRead.o ioLibrary/ioWrite.o ioLibrary/FtdiDevice.o
+g++ -std=c++11 -I. -IioLibrary -g main.cpp libioLibrary.a libftd2xx.a -L. -framework CoreFoundation -framework IOKit -o blink_test
+```
+
+```bash
+# Windows (MSVC x64, Developer PowerShell)
+cl /EHsc /std:c++14 /I. /IioLibrary ioLibrary\ioBuffer.cpp ioLibrary\ioRead.cpp ioLibrary\ioWrite.cpp ioLibrary\FtdiDevice.cpp main.cpp /link amd64\ftd2xx.lib /out:blink_test.exe
+```
+
+### Legacy Controller App (C)
 
 ```bash
 # macOS
@@ -112,12 +129,12 @@ make clean && make blink_test
 
 Expected output — all files compile with no errors:
 ```
-gcc -I. -IioLibrary -g -c ioLibrary/ioBuffer.c -o ioLibrary/ioBuffer.o
-gcc -I. -IioLibrary -g -c ioLibrary/ioRead.c -o ioLibrary/ioRead.o
-gcc -I. -IioLibrary -g -c ioLibrary/ioWrite.c -o ioLibrary/ioWrite.o
-gcc -I. -IioLibrary -g -c ioLibrary/FtdiDevice.c -o ioLibrary/FtdiDevice.o
-ar rcs libioLibrary.a ioLibrary/ioBuffer.o ...
-gcc -I. -IioLibrary -g main.c libioLibrary.a libftd2xx.a ... -o blink_test
+g++ -I. -IioLibrary -g -std=c++11 -c ioLibrary/ioBuffer.cpp -o ioLibrary/ioBuffer.o
+g++ -I. -IioLibrary -g -std=c++11 -c ioLibrary/ioRead.cpp -o ioLibrary/ioRead.o
+g++ -I. -IioLibrary -g -std=c++11 -c ioLibrary/ioWrite.cpp -o ioLibrary/ioWrite.o
+g++ -I. -IioLibrary -g -std=c++11 -c ioLibrary/FtdiDevice.cpp -o ioLibrary/FtdiDevice.o
+ar rcs libioLibrary.a ioLibrary/ioBuffer.o ioLibrary/ioRead.o ioLibrary/ioWrite.o ioLibrary/FtdiDevice.o
+g++ -I. -IioLibrary -g -std=c++11 main.cpp libioLibrary.a libftd2xx.a -L. -framework CoreFoundation -framework IOKit -o blink_test
 ```
 
 ### Step 3: Run
@@ -231,11 +248,11 @@ Morse timing: dot = 100ms, dash = 300ms, gap between letters = 300ms.
 
 ## Architecture: ioLibrary
 
-The ioLibrary separates FTDI I/O into a reusable static library with four classes (struct + functions in C):
+The ioLibrary separates FTDI I/O into a reusable static library with four C++ classes:
 
-- **FtdiDevice** — Encapsulates the FTDI device handle and all hardware calls: `open()`, `close()`, `read()`, `write()`. All `FT_*` function calls (`FT_Open`, `FT_Read`, `FT_Write`, etc.) reside exclusively in this class.
-- **ioBuffer** — Manages a heap-allocated byte buffer (`storage`/`length`). Created by the caller and passed into ioRead/ioWrite (aggregation).
-- **ioWrite** — Holds a FtdiDevice pointer (composition) and an ioBuffer pointer (aggregation). `configure()` sets buffer, byte count (M), and frequency. `writeLoop()` writes bytes at the configured frequency.
-- **ioRead** — Holds a FtdiDevice pointer (composition) and an ioBuffer pointer (aggregation). `configure()` sets buffer, byte count (N), and frequency. `readLoop()` reads bytes at the configured frequency.
+- **FtdiDevice** — Encapsulates the FTDI device handle and all hardware calls: `open()`, `close()`, `read()`, `write()`. All `FT_*` function calls (`FT_Open`, `FT_Read`, `FT_Write`, etc.) reside exclusively in this class. Constructor initializes the handle to `nullptr`; destructor calls `close()` automatically.
+- **ioBuffer** — Manages a heap-allocated byte buffer (`storage`/`length`). Created by the caller and passed into ioRead/ioWrite (aggregation). Destructor calls `destroy()` automatically.
+- **ioWrite** — Constructor takes a `FtdiDevice*` (composition). Holds an `ioBuffer*` set via `configure()` (aggregation). `configure()` sets buffer, byte count (M), and frequency. `writeLoop()` writes bytes at the configured frequency.
+- **ioRead** — Constructor takes a `FtdiDevice*` (composition). Holds an `ioBuffer*` set via `configure()` (aggregation). `configure()` sets buffer, byte count (N), and frequency. `readLoop()` reads bytes at the configured frequency.
 
-The main application (`BlinkDemoApp`) creates the FtdiDevice and ioBuffer objects, wires them into ioWrite/ioRead, and calls `runBlink1Hz()`/`runBlink2Hz()` to demonstrate LED blinking.
+The sample application (`main.cpp`) creates the FtdiDevice and ioBuffer objects, passes them to ioWrite/ioRead via constructors and `configure()`, then calls `runBlink1Hz()`/`runBlink2Hz()` to demonstrate LED blinking.
