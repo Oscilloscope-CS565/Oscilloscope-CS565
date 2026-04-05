@@ -2,6 +2,8 @@
 controller
 controller.exe
 blink_test
+pipeline
+output.bin
 *.o
 *.obj
 *.exe
@@ -21,7 +23,6 @@ libioLibrary.a
 
 # Documentation
 CLAUDE.md
-docs/
 
 # OS
 .DS_Store

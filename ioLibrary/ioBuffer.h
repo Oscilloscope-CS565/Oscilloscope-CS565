@@ -1,9 +1,9 @@
 #ifndef IO_BUFFER_H
 #define IO_BUFFER_H
 
-#include <stdlib.h>
-#include <string.h>
-#include <stddef.h>
+#include <cstddef>
+#include <cstdlib>
+#include <cstring>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -11,14 +11,19 @@
 #include "WinTypes.h"
 #endif
 
-typedef struct {
+class ioBuffer {
+private:
     BYTE   *storage;
-    size_t  length;
-} ioBuffer;
+    std::size_t length;
 
-int     ioBuffer_create(ioBuffer *buf, size_t capacity);
-BYTE*   ioBuffer_data(const ioBuffer *buf);
-size_t  ioBuffer_size(const ioBuffer *buf);
-void    ioBuffer_destroy(ioBuffer *buf);
+public:
+    ioBuffer();
+    ~ioBuffer();
+
+    int  create(std::size_t capacity);
+    BYTE* data() const;
+    std::size_t size() const;
+    void destroy();
+};
 
 #endif

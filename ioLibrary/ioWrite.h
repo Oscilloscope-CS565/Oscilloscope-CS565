@@ -3,16 +3,20 @@
 
 #include "FtdiDevice.h"
 #include "ioBuffer.h"
-#include <stddef.h>
+#include <cstddef>
 
-typedef struct {
-    FtdiDevice *device;
-    ioBuffer   *buffer;
-    size_t      M;
+class ioWrite {
+private:
+    FtdiDevice *device;   // composition — uses but does not own the device
+    ioBuffer   *buffer;   // aggregation — uses but does not own the buffer
+    std::size_t M;
     double      frequencyHz;
-} ioWrite;
 
-void      ioWrite_configure(ioWrite *writer, ioBuffer *buffer, size_t M, double frequencyHz);
-FT_STATUS ioWrite_writeLoop(ioWrite *writer, int cycles);
+public:
+    ioWrite(FtdiDevice *device);
+
+    void      configure(ioBuffer *buffer, std::size_t M, double frequencyHz);
+    FT_STATUS writeLoop(int cycles);
+};
 
 #endif

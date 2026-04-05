@@ -2,15 +2,20 @@
 #define FTDI_DEVICE_H
 
 #include "ftd2xx.h"
-#include <stddef.h>
+#include <cstddef>
 
-typedef struct {
+class FtdiDevice {
+private:
     FT_HANDLE handle;
-} FtdiDevice;
 
-FT_STATUS FtdiDevice_open(FtdiDevice *dev, int deviceIndex);
-FT_STATUS FtdiDevice_close(FtdiDevice *dev);
-FT_STATUS FtdiDevice_read(FtdiDevice *dev, BYTE *bytes, size_t n);
-FT_STATUS FtdiDevice_write(FtdiDevice *dev, BYTE *bytes, size_t m);
+public:
+    FtdiDevice();
+    ~FtdiDevice();
+
+    FT_STATUS open(int deviceIndex);
+    FT_STATUS close();
+    FT_STATUS read(BYTE *bytes, std::size_t n);
+    FT_STATUS write(BYTE *bytes, std::size_t m);
+};
 
 #endif

@@ -1,0 +1,37 @@
+#ifndef CIRCULAR_BUFFER_H
+#define CIRCULAR_BUFFER_H
+
+#include <cstddef>
+#include <mutex>
+#include <condition_variable>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include "WinTypes.h"
+#endif
+
+class CircularBuffer {
+private:
+    BYTE  *storage;
+    std::size_t capacity;
+    std::size_t head;      // write position
+    std::size_t tail;      // read position
+    std::size_t count;     // current number of bytes stored
+    std::mutex mtx;
+    std::condition_variable notEmpty;
+    std::condition_variable notFull;
+    bool finished;         // producer signals no more data
+
+public:
+    CircularBuffer(std::size_t capacity);
+    ~CircularBuffer();
+
+    bool write(const BYTE *data, std::size_t len);
+    bool read(BYTE *data, std::size_t len);
+    void setDone();
+    std::size_t getCount();
+    std::size_t getCapacity() const;
+};
+
+#endif
