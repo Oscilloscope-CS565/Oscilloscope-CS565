@@ -1,6 +1,6 @@
 # FT245R Controller - CS565
 
-A C++ project for controlling the FTDI FT245R (UM245R) USB-to-parallel chip, built for Stevens CS565 (Software Architecture and Component-Based Design).
+A C++ project for controlling the FTDI FT245R (UM245R) USB-to-parallel chip, built for Stevens CS565 (Software Architecture and Component-Based Design). Includes a reusable static I/O library and a multithreaded data acquisition pipeline.
 
 Figma link: https://www.figma.com/make/zhjeJXZHEork6O5gXgszK4/Untitled?t=eDVLhgxRvg6EaR4i-1
 
@@ -8,30 +8,36 @@ Figma link: https://www.figma.com/make/zhjeJXZHEork6O5gXgszK4/Untitled?t=eDVLhgx
 
 ```
 FT245R/
-├── ioLibrary/                 # Reusable FTDI I/O library (static, C++)
-│   ├── FtdiDevice.h / .cpp    # Device class: open, close, read, write (wraps all FT_* calls)
-│   ├── ioBuffer.h / .cpp      # Buffer management (malloc/free)
-│   ├── ioWrite.h  / .cpp      # Frequency-timed write loop
-│   └── ioRead.h   / .cpp      # Frequency-timed read loop
-├── main.cpp                   # Sample app: LED blink test at 1Hz and 2Hz
-├── Makefile                   # Build system (g++ -std=c++11)
-├── controller.c               # Legacy app: menu-driven controller (C)
-├── LED_Project.c              # Legacy: interactive LED pin control (C)
-├── morse_Project.c            # Legacy: Morse code via LED (C)
-├── ftd2xx.h                   # FTDI D2XX vendor header (C library, extern "C" compatible)
-├── WinTypes.h                 # Windows type definitions for macOS/Linux
-├── libftd2xx.a                # FTDI vendor static library (macOS)
-├── i386/ & amd64/             # FTDI vendor libraries (Windows)
+├── ioLibrary/                      # Reusable FTDI I/O library (static, C++)
+│   ├── FtdiDevice.h / .cpp         # Device class: wraps all FT_* calls
+│   ├── ioBuffer.h / .cpp           # Simple buffer management
+│   ├── ioWrite.h  / .cpp           # Single-threaded frequency-timed write
+│   ├── ioRead.h   / .cpp           # Single-threaded frequency-timed read
+│   ├── CircularBuffer.h / .cpp     # Thread-safe ring buffer (mutex + condvar)
+│   ├── ThreadedReader.h / .cpp     # Multithreaded FTDI reader (producer)
+│   └── ThreadedWriter.h / .cpp     # Multithreaded writer to file or FTDI (consumer)
+├── main.cpp                        # Blink demo: LED at 1Hz and 2Hz
+├── pipeline.cpp                    # Multithreaded data acquisition pipeline
+├── Makefile                        # Build system (g++ -std=c++11 -pthread)
+├── controller.c                    # Legacy: menu-driven controller (C)
+├── LED_Project.c                   # Legacy: interactive LED pin control (C)
+├── morse_Project.c                 # Legacy: Morse code via LED (C)
+├── ftd2xx.h                        # FTDI D2XX vendor header
+├── WinTypes.h                      # Windows type definitions for macOS/Linux
+├── libftd2xx.a                     # FTDI vendor static library (macOS)
+├── i386/ & amd64/                  # FTDI vendor libraries (Windows)
 └── docs/
-    ├── PLAN.md                # Project specification
-    └── Dev_plan.md            # Development plan for ioLibrary
+    ├── PLAN.md                     # Project specification
+    ├── Dev_plan.md                 # Development plan for ioLibrary
+    ├── NEW_FEATURE.md              # Pipeline assignment specification
+    └── NEW_FEATURE_PLAN.md         # Pipeline design document with UML
 ```
 
 ## Prerequisites
 
 ### Compiler
 
-- **macOS**: `brew install gcc` or `xcode-select --install` (g++ is included)
+- **macOS**: `xcode-select --install` or `brew install gcc` (g++ is included)
 - **Windows**: Install [MSVC Build Tools](https://visualstudio.microsoft.com/downloads/#remote-tools-for-visual-studio-2022) (select "Build Tools for Visual Studio 2022", check Desktop Development with C++)
 
 ### Hardware
@@ -54,47 +60,67 @@ UM245R DB0 ──── jumper wire ──── resistor (220 ohm) ────
 
 ## Build & Run
 
-### ioLibrary Sample App (blink_test)
+### Build All
 
 ```bash
-# Build
-make blink_test
+make clean && make pipeline blink_test
+```
 
-# Run
+This compiles 7 C++ source files into `libioLibrary.a` (static library), then links two executables:
+- `blink_test` — LED blink demo (single-threaded)
+- `pipeline` — multithreaded data acquisition pipeline
+
+### Blink Test (blink_test)
+
+```bash
+make blink_test
 ./blink_test
 ```
 
-This compiles 4 C++ source files into `libioLibrary.a` (static library), then links it with `main.cpp` to produce `blink_test`.
+Blinks LEDs at 1 Hz (10 cycles) then 2 Hz (20 cycles), followed by a read demo.
 
-**Manual build without Make:**
+### Data Acquisition Pipeline (pipeline)
 
 ```bash
-# macOS
-g++ -std=c++11 -I. -IioLibrary -g -c ioLibrary/ioBuffer.cpp -o ioLibrary/ioBuffer.o
-g++ -std=c++11 -I. -IioLibrary -g -c ioLibrary/ioRead.cpp -o ioLibrary/ioRead.o
-g++ -std=c++11 -I. -IioLibrary -g -c ioLibrary/ioWrite.cpp -o ioLibrary/ioWrite.o
-g++ -std=c++11 -I. -IioLibrary -g -c ioLibrary/FtdiDevice.cpp -o ioLibrary/FtdiDevice.o
-ar rcs libioLibrary.a ioLibrary/ioBuffer.o ioLibrary/ioRead.o ioLibrary/ioWrite.o ioLibrary/FtdiDevice.o
-g++ -std=c++11 -I. -IioLibrary -g main.cpp libioLibrary.a libftd2xx.a -L. -framework CoreFoundation -framework IOKit -o blink_test
+make pipeline
+./pipeline --help
 ```
 
+```
+Usage: ./pipeline [options]
+
+Options:
+  --output-file <path>    Write to file (default: output.bin)
+  --output-ftdi <index>   Write to FTDI device at index
+  --freq <hz>             Read/write frequency in Hz (default: 10)
+  --duration <sec>        Run duration in seconds (default: 10)
+  --bufsize <bytes>       Circular buffer size in bytes (default: 1024)
+  --help                  Show this help message
+```
+
+**Write to file:**
 ```bash
-# Windows (MSVC x64, Developer PowerShell)
-cl /EHsc /std:c++14 /I. /IioLibrary ioLibrary\ioBuffer.cpp ioLibrary\ioRead.cpp ioLibrary\ioWrite.cpp ioLibrary\FtdiDevice.cpp main.cpp /link amd64\ftd2xx.lib /out:blink_test.exe
+./pipeline --output-file output.bin --freq 10 --duration 5
+```
+
+**Write to another FTDI device (requires 2 devices):**
+```bash
+./pipeline --output-ftdi 1 --freq 5 --duration 10
+```
+
+**Verify output:**
+```bash
+xxd output.bin | head
 ```
 
 ### Legacy Controller App (C)
 
 ```bash
-# macOS
-gcc controller.c LED_Project.c morse_Project.c libftd2xx.a -I. -L. -framework CoreFoundation -framework IOKit -o controller
-
-# Windows (MSVC x64)
-cl controller.c LED_Project.c morse_Project.c /Zi /EHsc /nologo /link amd64/ftd2xx.lib /out:controller.exe
-
-# Run
+make controller
 ./controller
 ```
+
+Menu-driven app with LED control, Morse code, and raw byte read/write.
 
 ## macOS Driver Note
 
@@ -112,7 +138,7 @@ system_profiler SPUSBDataType | grep -A 5 -i "FT245\|FTDI\|0403"
 
 If no output, check your USB cable (must be a data cable, not charge-only).
 
-## Tutorial: Testing the ioLibrary
+## Testing the Blink Demo
 
 ### Step 1: Connect Hardware
 
@@ -120,30 +146,14 @@ If no output, check your USB cable (must be a data cable, not charge-only).
 2. Wire DB0 -> resistor -> LED -> GND (see Hardware Setup above)
 3. Connect USB data cable to your Mac
 
-### Step 2: Build
+### Step 2: Build and Run
 
 ```bash
-cd FT245R
 make clean && make blink_test
-```
-
-Expected output — all files compile with no errors:
-```
-g++ -I. -IioLibrary -g -std=c++11 -c ioLibrary/ioBuffer.cpp -o ioLibrary/ioBuffer.o
-g++ -I. -IioLibrary -g -std=c++11 -c ioLibrary/ioRead.cpp -o ioLibrary/ioRead.o
-g++ -I. -IioLibrary -g -std=c++11 -c ioLibrary/ioWrite.cpp -o ioLibrary/ioWrite.o
-g++ -I. -IioLibrary -g -std=c++11 -c ioLibrary/FtdiDevice.cpp -o ioLibrary/FtdiDevice.o
-ar rcs libioLibrary.a ioLibrary/ioBuffer.o ioLibrary/ioRead.o ioLibrary/ioWrite.o ioLibrary/FtdiDevice.o
-g++ -I. -IioLibrary -g -std=c++11 main.cpp libioLibrary.a libftd2xx.a -L. -framework CoreFoundation -framework IOKit -o blink_test
-```
-
-### Step 3: Run
-
-```bash
 ./blink_test
 ```
 
-### Step 4: Expected Output
+### Step 3: Expected Output
 
 **Device initialization:**
 ```
@@ -159,12 +169,9 @@ Set synchronous bit bang mode successfully.
 --- Blinking LEDs at 1 Hz (10 cycles, ~10 seconds) ---
 Write cycle 0: 0xFF     <- LED ON,  wait 1s
 Write cycle 1: 0x00     <- LED OFF, wait 1s
-Write cycle 2: 0xFF     <- LED ON,  wait 1s
 ...
 Write cycle 9: 0x00     <- LED OFF
 ```
-
-The LED toggles every 1 second (5 on/off cycles in 10 seconds).
 
 **2 Hz blink test (~10 seconds):**
 ```
@@ -174,8 +181,6 @@ Write cycle 1: 0x00     <- LED OFF, wait 0.5s
 ...
 Write cycle 19: 0x00    <- LED OFF
 ```
-
-The LED toggles every 0.5 seconds — noticeably faster than the 1 Hz test.
 
 **Read test (~5 seconds):**
 ```
@@ -187,54 +192,64 @@ Last read value: 0x00
 Device closed.
 ```
 
-### Step 5: Verify
+## Testing the Pipeline
+
+### Step 1: Build and Run
+
+```bash
+make clean && make pipeline
+./pipeline --output-file output.bin --freq 5 --duration 5
+```
+
+### Step 2: Expected Output
+
+```
+=== Multithreaded Data Acquisition Pipeline ===
+Frequency: 5.0 Hz
+Duration:  5 seconds
+Buffer:    1024 bytes
+Output:    file (output.bin)
+
+Device opened successfully.
+...
+Circular buffer created (1024 bytes).
+
+--- Starting pipeline ---
+[Reader] Thread started (N=1, freq=5.0 Hz)
+[Writer] Thread started — output: file (M=1, freq=5.0 Hz)
+Running for 5 seconds...
+
+[Reader] Cycle 0: read 1 byte(s), first=0x00
+[Writer] Cycle 0: wrote 1 byte(s), first=0x00
+...
+
+--- Stopping pipeline ---
+[Reader] Thread stopped.
+[Writer] Thread stopped.
+Device closed.
+
+Pipeline complete.
+```
+
+### Step 3: Verify Output File
+
+```bash
+xxd output.bin | head
+```
+
+### Verification Checklist
 
 | # | Check | How to Confirm |
 |---|-------|----------------|
-| 1 | Build succeeds | `make blink_test` returns 0, no errors |
-| 2 | Device opens | Terminal prints 5 "successfully" lines |
-| 3 | 1Hz values correct | Terminal alternates `0xFF` and `0x00` |
-| 4 | 1Hz LED blinks | LED toggles every 1 second |
-| 5 | 2Hz values correct | Terminal alternates `0xFF` and `0x00`, 20 lines |
-| 6 | 2Hz LED blinks | Visibly faster than 1Hz |
-| 7 | Read works | 5 read cycle lines, no errors |
-| 8 | Clean exit | Last line: "Device closed." |
-
-## Tutorial: Testing the Legacy Controller
-
-### Run
-
-```bash
-./controller
-```
-
-### Menu Options
-
-```
-Control Menu
-1. Control LEDs        — Toggle individual pins (0-7) on/off
-2. Send Morse Code     — Type text, LED blinks Morse on DB0
-3. Write byte to port  — Write 0x00 to all pins
-4. Read byte from port — Read current pin states
-5. Exit
-```
-
-### Test LED Control (Option 1)
-
-1. Enter `1`
-2. Enter pin number: `0`
-3. Enter state: `1` (ON) — LED on DB0 lights up
-4. Enter state: `0` (OFF) — LED turns off
-5. Type `done` to return to menu
-
-### Test Morse Code (Option 2)
-
-1. Enter `2`
-2. Type `SOS` and press Enter
-3. Watch LED on DB0 blink: `... --- ...` (3 short, 3 long, 3 short)
-4. Type `E0` to exit Morse mode
-
-Morse timing: dot = 100ms, dash = 300ms, gap between letters = 300ms.
+| 1 | Build succeeds | `make pipeline blink_test` returns 0, no errors |
+| 2 | Device opens | "Device opened successfully." printed |
+| 3 | Blink 1Hz works | LED toggles every 1 second |
+| 4 | Blink 2Hz works | LED toggles every 0.5 second, visibly faster |
+| 5 | Pipeline reader runs | "[Reader] Thread started" + cycle logs |
+| 6 | Pipeline writer runs | "[Writer] Thread started" + cycle logs |
+| 7 | File output works | `xxd output.bin` shows byte data |
+| 8 | Threads stop cleanly | "[Reader] Thread stopped." + "[Writer] Thread stopped." |
+| 9 | Clean exit | "Pipeline complete." + "Device closed." |
 
 ## Troubleshooting
 
@@ -244,15 +259,47 @@ Morse timing: dot = 100ms, dash = 300ms, gap between letters = 300ms.
 | Terminal output correct but LED dark | Wiring issue | Verify DB0 -> resistor -> LED(+) -> LED(-) -> GND closed loop |
 | LED stays on, never blinks | Connected to VCC instead of DB0 | Rewire to DB0 |
 | LED very dim | Resistor too large | Use 220 ohm resistor |
-| Program hangs | Normal blocking sleep | Wait ~25 seconds for full test to complete |
+| Pipeline hangs on stop | Deadlock in circular buffer | Should not happen; file a bug |
 
-## Architecture: ioLibrary
+## Architecture
 
-The ioLibrary separates FTDI I/O into a reusable static library with four C++ classes:
+### ioLibrary — 7 C++ Classes
 
-- **FtdiDevice** — Encapsulates the FTDI device handle and all hardware calls: `open()`, `close()`, `read()`, `write()`. All `FT_*` function calls (`FT_Open`, `FT_Read`, `FT_Write`, etc.) reside exclusively in this class. Constructor initializes the handle to `nullptr`; destructor calls `close()` automatically.
-- **ioBuffer** — Manages a heap-allocated byte buffer (`storage`/`length`). Created by the caller and passed into ioRead/ioWrite (aggregation). Destructor calls `destroy()` automatically.
-- **ioWrite** — Constructor takes a `FtdiDevice*` (composition). Holds an `ioBuffer*` set via `configure()` (aggregation). `configure()` sets buffer, byte count (M), and frequency. `writeLoop()` writes bytes at the configured frequency.
-- **ioRead** — Constructor takes a `FtdiDevice*` (composition). Holds an `ioBuffer*` set via `configure()` (aggregation). `configure()` sets buffer, byte count (N), and frequency. `readLoop()` reads bytes at the configured frequency.
+The library is organized into two layers:
 
-The sample application (`main.cpp`) creates the FtdiDevice and ioBuffer objects, passes them to ioWrite/ioRead via constructors and `configure()`, then calls `runBlink1Hz()`/`runBlink2Hz()` to demonstrate LED blinking.
+**Single-threaded I/O (Phase 1):**
+
+- **FtdiDevice** — Encapsulates the FTDI device handle. All `FT_*` calls (`FT_Open`, `FT_Read`, `FT_Write`, `FT_Close`, etc.) reside exclusively in this class. Destructor calls `close()` automatically.
+- **ioBuffer** — Manages a heap-allocated byte buffer. Created by the caller and passed into readers/writers (aggregation).
+- **ioWrite** — Takes a `FtdiDevice*` (composition) and `ioBuffer*` (aggregation). Writes M bytes at a configured frequency in a blocking loop.
+- **ioRead** — Takes a `FtdiDevice*` (composition) and `ioBuffer*` (aggregation). Reads N bytes at a configured frequency in a blocking loop.
+
+**Multithreaded Pipeline (Phase 2):**
+
+- **CircularBuffer** — Thread-safe ring buffer using `std::mutex` and `std::condition_variable`. Supports blocking `write()` (producer) and `read()` (consumer). `setDone()` signals the producer is finished so the consumer can drain and exit.
+- **ThreadedReader** — Runs a `std::thread` that reads from an FTDI device and pushes data into a CircularBuffer. Composition to FtdiDevice, aggregation to CircularBuffer.
+- **ThreadedWriter** — Runs a `std::thread` that pulls data from a CircularBuffer and writes to either a file or another FTDI device. Two constructors support both output targets.
+
+### Data Flow
+
+```
+┌──────────────┐       ┌──────────────┐       ┌──────────────┐
+│ThreadedReader │       │CircularBuffer│       │ThreadedWriter │
+│              │       │              │       │              │
+│ FTDI Dev ──> │ ────> │ [ring buffer]│ ────> │ ──> File     │
+│ (read thread)│       │ (thread-safe)│       │     or       │
+│              │       │              │       │ ──> FTDI Dev │
+└──────────────┘       └──────────────┘       └──────────────┘
+    Producer               Pipeline              Consumer
+```
+
+### UML Relationships
+
+| From | To | Type | Description |
+|------|----|------|-------------|
+| ioWrite / ioRead | FtdiDevice | Composition | Uses device, does not own it |
+| ioWrite / ioRead | ioBuffer | Aggregation | Buffer created externally |
+| ThreadedReader | FtdiDevice | Composition | Uses device, does not own it |
+| ThreadedReader | CircularBuffer | Aggregation | Buffer created externally |
+| ThreadedWriter | FtdiDevice | Composition (0..1) | Optional, nullptr if writing to file |
+| ThreadedWriter | CircularBuffer | Aggregation | Buffer created externally |
