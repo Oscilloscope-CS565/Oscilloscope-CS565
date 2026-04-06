@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include "ioBuffer.h"
-#include "FtdiDevice.h"
+#include "ioFtdiDevice.h"
 #include "ioWrite.h"
 #include "ioRead.h"
 

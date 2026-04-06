@@ -1,8 +1,8 @@
 #ifndef THREADED_WRITER_H
 #define THREADED_WRITER_H
 
-#include "FtdiDevice.h"
-#include "CircularBuffer.h"
+#include "ioFtdiDevice.h"
+#include "ioCircularBuffer.h"
 #include <cstddef>
 #include <cstdio>
 #include <thread>

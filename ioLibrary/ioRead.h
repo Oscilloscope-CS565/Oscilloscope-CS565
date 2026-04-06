@@ -1,7 +1,7 @@
 #ifndef IO_READ_H
 #define IO_READ_H
 
-#include "FtdiDevice.h"
+#include "ioFtdiDevice.h"
 #include "ioBuffer.h"
 #include <cstddef>
 

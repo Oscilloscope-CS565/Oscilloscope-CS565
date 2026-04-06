@@ -1,8 +1,8 @@
 #ifndef THREADED_READER_H
 #define THREADED_READER_H
 
-#include "FtdiDevice.h"
-#include "CircularBuffer.h"
+#include "ioFtdiDevice.h"
+#include "ioCircularBuffer.h"
 #include <cstddef>
 #include <thread>
 #include <atomic>

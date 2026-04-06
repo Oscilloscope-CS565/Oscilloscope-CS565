@@ -3,8 +3,8 @@ CXXFLAGS = -I. -IioLibrary -g -std=c++11 -pthread
 LDFLAGS = -L. -framework CoreFoundation -framework IOKit -pthread
 
 IO_SRCS = ioLibrary/ioBuffer.cpp ioLibrary/ioRead.cpp ioLibrary/ioWrite.cpp \
-          ioLibrary/FtdiDevice.cpp ioLibrary/CircularBuffer.cpp \
-          ioLibrary/ThreadedReader.cpp ioLibrary/ThreadedWriter.cpp
+          ioLibrary/ioFtdiDevice.cpp ioLibrary/ioCircularBuffer.cpp \
+          ioLibrary/ioThreadedReader.cpp ioLibrary/ioThreadedWriter.cpp
 IO_OBJS = $(IO_SRCS:.cpp=.o)
 
 # Build the pipeline executable (default target)

@@ -9,13 +9,13 @@ Figma link: https://www.figma.com/make/zhjeJXZHEork6O5gXgszK4/Untitled?t=eDVLhgx
 ```
 FT245R/
 ├── ioLibrary/                      # Reusable FTDI I/O library (static, C++)
-│   ├── FtdiDevice.h / .cpp         # Device class: wraps all FT_* calls
+│   ├── ioFtdiDevice.h / .cpp       # Device class: wraps all FT_* calls
 │   ├── ioBuffer.h / .cpp           # Simple buffer management
 │   ├── ioWrite.h  / .cpp           # Single-threaded frequency-timed write
 │   ├── ioRead.h   / .cpp           # Single-threaded frequency-timed read
-│   ├── CircularBuffer.h / .cpp     # Thread-safe ring buffer (mutex + condvar)
-│   ├── ThreadedReader.h / .cpp     # Multithreaded FTDI reader (producer)
-│   └── ThreadedWriter.h / .cpp     # Multithreaded writer to file or FTDI (consumer)
+│   ├── ioCircularBuffer.h / .cpp   # Thread-safe ring buffer (mutex + condvar)
+│   ├── ioThreadedReader.h / .cpp   # Multithreaded FTDI reader (producer)
+│   └── ioThreadedWriter.h / .cpp   # Multithreaded writer to file or FTDI (consumer)
 ├── main.cpp                        # Blink demo: LED at 1Hz and 2Hz
 ├── pipeline.cpp                    # Multithreaded data acquisition pipeline
 ├── Makefile                        # Build system (g++ -std=c++11 -pthread)
@@ -236,6 +236,18 @@ Pipeline complete.
 ```bash
 xxd output.bin | head
 ```
+expected result:
+00000000: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000010: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000020: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+
+This output is expected for your current setup.
+
+  - pipeline only does read from FTDI -> write to file; it does not generate a blink pattern
+    (0xFF/0x00) by itself.
+  - The device is configured as FT_SetBitMode(..., 0xFF, 0x01) (all 8 pins as outputs). With no
+    changing external signal, the read value stays at 0x00.
+  - In xxd, 0000 is just display formatting for two consecutive bytes: 00 00.
 
 ### Verification Checklist
 

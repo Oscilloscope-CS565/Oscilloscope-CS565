@@ -3,10 +3,10 @@
 #include <cstring>
 #include <thread>
 #include <chrono>
-#include "FtdiDevice.h"
-#include "CircularBuffer.h"
-#include "ThreadedReader.h"
-#include "ThreadedWriter.h"
+#include "ioFtdiDevice.h"
+#include "ioCircularBuffer.h"
+#include "ioThreadedReader.h"
+#include "ioThreadedWriter.h"
 
 static void printUsage(const char *progName) {
     printf("Usage: %s [options]\n", progName);
