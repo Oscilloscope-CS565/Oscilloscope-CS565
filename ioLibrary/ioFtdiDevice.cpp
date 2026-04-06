@@ -1,4 +1,4 @@
-#include "FtdiDevice.h"
+#include "ioFtdiDevice.h"
 #include <cstdio>
 
 FtdiDevice::FtdiDevice() : handle(nullptr) {}

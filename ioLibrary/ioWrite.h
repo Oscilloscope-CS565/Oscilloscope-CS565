@@ -1,7 +1,7 @@
 #ifndef IO_WRITE_H
 #define IO_WRITE_H
 
-#include "FtdiDevice.h"
+#include "ioFtdiDevice.h"
 #include "ioBuffer.h"
 #include <cstddef>
 
