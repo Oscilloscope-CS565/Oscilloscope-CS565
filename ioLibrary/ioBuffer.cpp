@@ -1,6 +1,8 @@
 #include "ioBuffer.h"
 #include <cstdio>
 
+namespace ioBuffer {
+
 ioBuffer::ioBuffer() : storage(nullptr), length(0) {}
 
 ioBuffer::~ioBuffer() {
@@ -33,3 +35,5 @@ void ioBuffer::destroy() {
     }
     length = 0;
 }
+
+} // namespace ioBuffer

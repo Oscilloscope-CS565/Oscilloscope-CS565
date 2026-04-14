@@ -9,14 +9,16 @@
 #define io_sleep_us(us) usleep(us)
 #endif
 
-ThreadedReader::ThreadedReader(FtdiDevice *device)
+namespace ioThreadedReader {
+
+ThreadedReader::ThreadedReader(ioFtdiDevice::FtdiDevice *device)
     : device(device), circBuffer(nullptr), N(0), frequencyHz(0.0), running(false) {}
 
 ThreadedReader::~ThreadedReader() {
     stop();
 }
 
-void ThreadedReader::configure(CircularBuffer *buf, std::size_t N, double frequencyHz) {
+void ThreadedReader::configure(ioCircularBuffer::CircularBuffer *buf, std::size_t N, double frequencyHz) {
     this->circBuffer = buf;
     this->N = N;
     this->frequencyHz = frequencyHz;
@@ -32,7 +34,9 @@ void ThreadedReader::start() {
 void ThreadedReader::stop() {
     if (!running.load()) return;
     running.store(false);
-    circBuffer->setDone();
+    if (circBuffer != nullptr) {
+        circBuffer->setDone();
+    }
     if (readerThread.joinable()) {
         readerThread.join();
     }
@@ -52,7 +56,7 @@ void ThreadedReader::threadFunc() {
             break;
         }
 
-        if (!circBuffer->write(tempBuf, N)) {
+        if (circBuffer != nullptr && !circBuffer->write(tempBuf, N)) {
             break;
         }
 
@@ -63,3 +67,5 @@ void ThreadedReader::threadFunc() {
 
     delete[] tempBuf;
 }
+
+} // namespace ioThreadedReader

@@ -1,0 +1,5 @@
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles/oscilloscope_qt.dir
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles/edit_cache.dir
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles/rebuild_cache.dir
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles/oscilloscope_qt_autogen_timestamp_deps.dir
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles/oscilloscope_qt_autogen.dir

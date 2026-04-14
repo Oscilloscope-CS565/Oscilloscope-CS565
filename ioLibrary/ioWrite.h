@@ -5,18 +5,22 @@
 #include "ioBuffer.h"
 #include <cstddef>
 
+namespace ioWrite {
+
 class ioWrite {
 private:
-    FtdiDevice *device;   // composition — uses but does not own the device
-    ioBuffer   *buffer;   // aggregation — uses but does not own the buffer
+    ioFtdiDevice::FtdiDevice *device;
+    ioBuffer::ioBuffer       *buffer;
     std::size_t M;
     double      frequencyHz;
 
 public:
-    ioWrite(FtdiDevice *device);
+    ioWrite(ioFtdiDevice::FtdiDevice *device);
 
-    void      configure(ioBuffer *buffer, std::size_t M, double frequencyHz);
+    void      configure(ioBuffer::ioBuffer *buffer, std::size_t M, double frequencyHz);
     FT_STATUS writeLoop(int cycles);
 };
+
+} // namespace ioWrite
 
 #endif

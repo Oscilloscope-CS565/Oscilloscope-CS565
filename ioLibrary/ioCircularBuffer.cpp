@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <cstring>
 
+namespace ioCircularBuffer {
+
 CircularBuffer::CircularBuffer(std::size_t capacity)
     : capacity(capacity), head(0), tail(0), count(0), finished(false) {
     storage = static_cast<BYTE *>(std::malloc(capacity));
@@ -24,7 +26,6 @@ bool CircularBuffer::write(const BYTE *data, std::size_t len) {
     std::unique_lock<std::mutex> lock(mtx);
 
     for (std::size_t i = 0; i < len; i++) {
-        // Wait until there is space or we are told to stop
         notFull.wait(lock, [this]() {
             return count < capacity || finished;
         });
@@ -47,7 +48,6 @@ bool CircularBuffer::read(BYTE *data, std::size_t len) {
     std::unique_lock<std::mutex> lock(mtx);
 
     for (std::size_t i = 0; i < len; i++) {
-        // Wait until there is data or producer is done
         notEmpty.wait(lock, [this]() {
             return count > 0 || finished;
         });
@@ -81,3 +81,5 @@ std::size_t CircularBuffer::getCount() {
 std::size_t CircularBuffer::getCapacity() const {
     return capacity;
 }
+
+} // namespace ioCircularBuffer
