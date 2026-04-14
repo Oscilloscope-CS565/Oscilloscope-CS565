@@ -11,17 +11,19 @@
 #include "WinTypes.h"
 #endif
 
+namespace ioCircularBuffer {
+
 class CircularBuffer {
 private:
     BYTE  *storage;
     std::size_t capacity;
-    std::size_t head;      // write position
-    std::size_t tail;      // read position
-    std::size_t count;     // current number of bytes stored
+    std::size_t head;
+    std::size_t tail;
+    std::size_t count;
     std::mutex mtx;
     std::condition_variable notEmpty;
     std::condition_variable notFull;
-    bool finished;         // producer signals no more data
+    bool finished;
 
 public:
     CircularBuffer(std::size_t capacity);
@@ -33,5 +35,7 @@ public:
     std::size_t getCount();
     std::size_t getCapacity() const;
 };
+
+} // namespace ioCircularBuffer
 
 #endif

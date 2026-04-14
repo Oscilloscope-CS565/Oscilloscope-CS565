@@ -5,18 +5,22 @@
 #include "ioBuffer.h"
 #include <cstddef>
 
+namespace ioRead {
+
 class ioRead {
 private:
-    FtdiDevice *device;   // composition — uses but does not own the device
-    ioBuffer   *buffer;   // aggregation — uses but does not own the buffer
+    ioFtdiDevice::FtdiDevice *device;
+    ioBuffer::ioBuffer       *buffer;
     std::size_t N;
     double      frequencyHz;
 
 public:
-    ioRead(FtdiDevice *device);
+    ioRead(ioFtdiDevice::FtdiDevice *device);
 
-    void      configure(ioBuffer *buffer, std::size_t N, double frequencyHz);
+    void      configure(ioBuffer::ioBuffer *buffer, std::size_t N, double frequencyHz);
     FT_STATUS readLoop(int cycles);
 };
+
+} // namespace ioRead
 
 #endif

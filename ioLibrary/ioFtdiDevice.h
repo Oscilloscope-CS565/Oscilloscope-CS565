@@ -3,10 +3,14 @@
 
 #include "ftd2xx.h"
 #include <cstddef>
+#include <mutex>
+
+namespace ioFtdiDevice {
 
 class FtdiDevice {
 private:
     FT_HANDLE handle;
+    std::mutex accessMutex;
 
 public:
     FtdiDevice();
@@ -17,5 +21,7 @@ public:
     FT_STATUS read(BYTE *bytes, std::size_t n);
     FT_STATUS write(BYTE *bytes, std::size_t m);
 };
+
+} // namespace ioFtdiDevice
 
 #endif

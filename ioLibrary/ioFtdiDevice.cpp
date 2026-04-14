@@ -1,6 +1,8 @@
 #include "ioFtdiDevice.h"
 #include <cstdio>
 
+namespace ioFtdiDevice {
+
 FtdiDevice::FtdiDevice() : handle(nullptr) {}
 
 FtdiDevice::~FtdiDevice() {
@@ -59,6 +61,10 @@ FT_STATUS FtdiDevice::open(int deviceIndex) {
 }
 
 FT_STATUS FtdiDevice::close() {
+    std::lock_guard<std::mutex> lock(accessMutex);
+    if (handle == nullptr) {
+        return FT_OK;
+    }
     FT_STATUS ftStatus = FT_Close(handle);
     if (ftStatus == FT_OK) {
         handle = nullptr;
@@ -68,12 +74,22 @@ FT_STATUS FtdiDevice::close() {
 }
 
 FT_STATUS FtdiDevice::read(BYTE *bytes, std::size_t n) {
+    std::lock_guard<std::mutex> lock(accessMutex);
+    if (handle == nullptr) {
+        return FT_INVALID_HANDLE;
+    }
     DWORD bytesRead;
     FT_Purge(handle, FT_PURGE_RX);
     return FT_Read(handle, bytes, (DWORD)n, &bytesRead);
 }
 
 FT_STATUS FtdiDevice::write(BYTE *bytes, std::size_t m) {
+    std::lock_guard<std::mutex> lock(accessMutex);
+    if (handle == nullptr) {
+        return FT_INVALID_HANDLE;
+    }
     DWORD bytesWritten;
     return FT_Write(handle, bytes, (DWORD)m, &bytesWritten);
 }
+
+} // namespace ioFtdiDevice

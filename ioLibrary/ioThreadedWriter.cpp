@@ -9,7 +9,9 @@
 #define io_sleep_us(us) usleep(us)
 #endif
 
-ThreadedWriter::ThreadedWriter(FtdiDevice *device)
+namespace ioThreadedWriter {
+
+ThreadedWriter::ThreadedWriter(ioFtdiDevice::FtdiDevice *device)
     : device(device), circBuffer(nullptr), outputFile(nullptr),
       M(0), frequencyHz(0.0), running(false) {}
 
@@ -30,7 +32,7 @@ ThreadedWriter::~ThreadedWriter() {
     }
 }
 
-void ThreadedWriter::configure(CircularBuffer *buf, std::size_t M, double frequencyHz) {
+void ThreadedWriter::configure(ioCircularBuffer::CircularBuffer *buf, std::size_t M, double frequencyHz) {
     this->circBuffer = buf;
     this->M = M;
     this->frequencyHz = frequencyHz;
@@ -62,13 +64,11 @@ void ThreadedWriter::threadFunc() {
     int cycle = 0;
 
     while (running.load()) {
-        if (!circBuffer->read(tempBuf, M)) {
-            // No more data (producer done and buffer empty)
+        if (circBuffer == nullptr || !circBuffer->read(tempBuf, M)) {
             break;
         }
 
         if (device != nullptr) {
-            // Write to FTDI device
             FT_STATUS status = device->write(tempBuf, M);
             if (status != FT_OK) {
                 fprintf(stderr, "[Writer] Error: FTDI write failed at cycle %d (status %lu)\n",
@@ -76,7 +76,6 @@ void ThreadedWriter::threadFunc() {
                 break;
             }
         } else if (outputFile != nullptr) {
-            // Write to file
             std::size_t written = fwrite(tempBuf, 1, M, outputFile);
             if (written != M) {
                 fprintf(stderr, "[Writer] Error: file write failed at cycle %d\n", cycle);
@@ -92,3 +91,5 @@ void ThreadedWriter::threadFunc() {
 
     delete[] tempBuf;
 }
+
+} // namespace ioThreadedWriter

@@ -15,7 +15,16 @@ FT245R/
 │   ├── ioRead.h   / .cpp           # Single-threaded frequency-timed read
 │   ├── ioCircularBuffer.h / .cpp   # Thread-safe ring buffer (mutex + condvar)
 │   ├── ioThreadedReader.h / .cpp   # Multithreaded FTDI reader (producer)
-│   └── ioThreadedWriter.h / .cpp   # Multithreaded writer to file or FTDI (consumer)
+│   ├── ioThreadedWriter.h / .cpp   # Multithreaded writer to file or FTDI (consumer)
+│   └── ioScaleShiftPipeline.h / .cpp # Pipeline stage: scale + shift between two ring buffers
+├── ui/                             # Qt MVC GUI (CMake target oscilloscope_qt)
+│   ├── ioOscilloscopeModel.*       # Model: FTDI + dual circular buffers + pipeline thread
+│   ├── ioMainWindow.*              # Controller: view switching + model wiring
+│   ├── ioAbstractOscilloscopeView.h # View interface (input / output / waveform)
+│   ├── ioCompactOscilloscopeView.* / ioWorkspaceOscilloscopeView.* # Two concrete Qt views
+│   └── ioWaveformWidget.*          # Signal display widget
+├── qt_main.cpp                     # Qt application entry
+├── CMakeLists.txt                  # Qt 6 + Widgets + libioLibrary + libftd2xx.a
 ├── main.cpp                        # Blink demo: LED at 1Hz and 2Hz
 ├── pipeline.cpp                    # Multithreaded data acquisition pipeline
 ├── Makefile                        # Build system (g++ -std=c++11 -pthread)
@@ -66,9 +75,72 @@ UM245R DB0 ──── jumper wire ──── resistor (220 ohm) ────
 make clean && make pipeline blink_test
 ```
 
-This compiles 7 C++ source files into `libioLibrary.a` (static library), then links two executables:
+This compiles the I/O library sources into `libioLibrary.a` (static library), then links two executables:
 - `blink_test` — LED blink demo (single-threaded)
 - `pipeline` — multithreaded data acquisition pipeline
+
+### Qt GUI (`oscilloscope_qt`, optional)
+
+Requires **Qt 6** (Widgets module), **CMake** 3.16+, and a **C++17** compiler. The app uses the D2XX static library shipped in this repo (`libftd2xx.a` on macOS; `amd64/ftd2xx.lib` or `i386/ftd2xx.lib` on Windows — selected automatically by `CMakeLists.txt`).
+
+#### Architecture (short)
+
+- **Model** (`ioOscilloscopeModel`): opens FTDI device(s), runs `ThreadedReader` → raw ring buffer → `ScaleShiftPipeline` (scale/shift + optional DB0 toggle) → second ring buffer → `ThreadedWriter` (file, same device write-back, or second FTDI). Emits waveform samples and log lines.
+- **Controller** (`ioMainWindow`): switches between views, connects model signals (errors, samples, log).
+- **Views**: `CompactOscilloscopeView` and `WorkspaceOscilloscopeView` implement `AbstractOscilloscopeView` — same controls, different layout. **View** menu toggles them.
+
+#### Qt UI — control reference
+
+| Control | Purpose |
+|--------|---------|
+| **Scale** | Per-byte pipeline gain: `round(scale × byte + shift)` clamped to 0–255. |
+| **Shift** | Constant offset added after scaling (same formula). |
+| **Sample rate (Hz)** | How often the reader samples the FTDI (and writer consumes processed bytes at the same rate). |
+| **Ring buffer size** | Capacity in bytes for **each** of the two circular buffers (raw + processed). |
+| **Read device index** | `FT_Open` index for the device that supplies input bytes (usually `0` if only one board is attached). |
+| **Write device index** | Used when **Dual FTDI** is checked — second `FT_Open` index for the write-side board. |
+| **Dual FTDI** | When on, processed data goes to the **second** device (`Write device index`). When off, you can write back to the read device or to a file (see below). |
+| **Single device: write processed data back** | When on (and not dual FTDI), `ThreadedWriter` targets the **same** `FtdiDevice` as the reader so DB0 can follow the pipeline output; D2XX access is mutex-protected. |
+| **Toggle DB0 every sample** | Pipeline forces DB0 to alternate each processed sample (LED cadence follows sample rate; square-wave period ≈ `2 / sampleRate` seconds). |
+| **Start / Stop** | Start/stop the acquisition threads. **Stop** before unplugging hardware is recommended. |
+| **Signal display** | Plots recent normalized samples; when DB0 toggle is enabled, bit0 is shown full-scale so the square wave is visible. |
+| **Log** | Status text from the model (open paths, mode summary). |
+
+Without a compatible FTDI device, **Start** will fail at `FT_Open` and an error dialog appears — this is expected on machines with no hardware.
+
+#### Build and run — macOS
+
+Install Qt 6 and CMake (example with Homebrew):
+
+```bash
+brew install qt cmake
+cd /path/to/Oscilloscope-CS565
+cmake -S . -B build -DCMAKE_PREFIX_PATH="$(brew --prefix qt)"
+cmake --build build
+./build/oscilloscope_qt
+```
+
+If CMake cannot find Qt, set `CMAKE_PREFIX_PATH` to your Qt install, e.g. `~/Qt/6.8.0/macos`.
+
+#### Build and run — Windows
+
+1. Install **Visual Studio 2022** (Desktop development with C++) or **Build Tools**, **CMake**, and **Qt 6** (MSVC 64-bit kit, e.g. `Qt 6.x.x` → MSVC 2019 64-bit).
+2. Open **x64 Native Tools Command Prompt for VS** (or PowerShell with MSVC in `PATH`).
+3. Point CMake at your Qt kit (adjust the path to match your install):
+
+```bat
+cd C:\path\to\Oscilloscope-CS565
+cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH=C:\Qt\6.8.2\msvc2019_64
+cmake --build build --config Release
+```
+
+4. Run the executable (Visual Studio generator places it under `Release`):
+
+```bat
+build\Release\oscilloscope_qt.exe
+```
+
+**Notes (Windows):** Use the **64-bit** toolchain with `amd64\ftd2xx.lib`. If you use **Ninja** instead of Visual Studio generator, the binary is typically `build\oscilloscope_qt.exe` after `cmake --build build`. Install the official **FTDI D2XX** driver so `FT_Open` succeeds.
 
 ### Blink Test (blink_test)
 

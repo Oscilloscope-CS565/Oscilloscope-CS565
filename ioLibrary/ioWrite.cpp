@@ -9,10 +9,12 @@
 #define io_sleep_us(us) usleep(us)
 #endif
 
-ioWrite::ioWrite(FtdiDevice *device)
+namespace ioWrite {
+
+ioWrite::ioWrite(ioFtdiDevice::FtdiDevice *device)
     : device(device), buffer(nullptr), M(0), frequencyHz(0.0) {}
 
-void ioWrite::configure(ioBuffer *buffer, std::size_t M, double frequencyHz) {
+void ioWrite::configure(ioBuffer::ioBuffer *buffer, std::size_t M, double frequencyHz) {
     this->buffer = buffer;
     this->M = M;
     this->frequencyHz = frequencyHz;
@@ -41,3 +43,5 @@ FT_STATUS ioWrite::writeLoop(int cycles) {
 
     return ftStatus;
 }
+
+} // namespace ioWrite

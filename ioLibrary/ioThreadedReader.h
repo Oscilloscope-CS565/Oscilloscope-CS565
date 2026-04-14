@@ -7,11 +7,13 @@
 #include <thread>
 #include <atomic>
 
+namespace ioThreadedReader {
+
 class ThreadedReader {
 private:
-    FtdiDevice     *device;       // composition — uses but does not own the device
-    CircularBuffer *circBuffer;   // aggregation — uses but does not own the buffer
-    std::size_t     N;            // bytes per read
+    ioFtdiDevice::FtdiDevice     *device;
+    ioCircularBuffer::CircularBuffer *circBuffer;
+    std::size_t     N;
     double          frequencyHz;
     std::thread     readerThread;
     std::atomic<bool> running;
@@ -19,12 +21,14 @@ private:
     void threadFunc();
 
 public:
-    ThreadedReader(FtdiDevice *device);
+    ThreadedReader(ioFtdiDevice::FtdiDevice *device);
     ~ThreadedReader();
 
-    void configure(CircularBuffer *buf, std::size_t N, double frequencyHz);
+    void configure(ioCircularBuffer::CircularBuffer *buf, std::size_t N, double frequencyHz);
     void start();
     void stop();
 };
+
+} // namespace ioThreadedReader
 
 #endif

@@ -9,10 +9,12 @@
 #define io_sleep_us(us) usleep(us)
 #endif
 
-ioRead::ioRead(FtdiDevice *device)
+namespace ioRead {
+
+ioRead::ioRead(ioFtdiDevice::FtdiDevice *device)
     : device(device), buffer(nullptr), N(0), frequencyHz(0.0) {}
 
-void ioRead::configure(ioBuffer *buffer, std::size_t N, double frequencyHz) {
+void ioRead::configure(ioBuffer::ioBuffer *buffer, std::size_t N, double frequencyHz) {
     this->buffer = buffer;
     this->N = N;
     this->frequencyHz = frequencyHz;
@@ -38,3 +40,5 @@ FT_STATUS ioRead::readLoop(int cycles) {
 
     return ftStatus;
 }
+
+} // namespace ioRead

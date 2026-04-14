@@ -11,6 +11,8 @@
 #include "WinTypes.h"
 #endif
 
+namespace ioBuffer {
+
 class ioBuffer {
 private:
     BYTE   *storage;
@@ -25,5 +27,7 @@ public:
     std::size_t size() const;
     void destroy();
 };
+
+} // namespace ioBuffer
 
 #endif

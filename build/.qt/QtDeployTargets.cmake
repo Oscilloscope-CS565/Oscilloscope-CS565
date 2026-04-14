@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_oscilloscope_qt_FILE /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/oscilloscope_qt)
+set(__QT_DEPLOY_TARGET_oscilloscope_qt_TYPE EXECUTABLE)

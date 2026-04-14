@@ -8,12 +8,14 @@
 #include <thread>
 #include <atomic>
 
+namespace ioThreadedWriter {
+
 class ThreadedWriter {
 private:
-    FtdiDevice     *device;       // composition — nullptr if writing to file
-    CircularBuffer *circBuffer;   // aggregation — uses but does not own the buffer
-    FILE           *outputFile;   // nullptr if writing to FTDI device
-    std::size_t     M;            // bytes per write
+    ioFtdiDevice::FtdiDevice     *device;
+    ioCircularBuffer::CircularBuffer *circBuffer;
+    FILE           *outputFile;
+    std::size_t     M;
     double          frequencyHz;
     std::thread     writerThread;
     std::atomic<bool> running;
@@ -21,13 +23,15 @@ private:
     void threadFunc();
 
 public:
-    ThreadedWriter(FtdiDevice *device);       // write to FTDI device
-    ThreadedWriter(const char *filePath);      // write to file
+    ThreadedWriter(ioFtdiDevice::FtdiDevice *device);
+    ThreadedWriter(const char *filePath);
     ~ThreadedWriter();
 
-    void configure(CircularBuffer *buf, std::size_t M, double frequencyHz);
+    void configure(ioCircularBuffer::CircularBuffer *buf, std::size_t M, double frequencyHz);
     void start();
     void stop();
 };
+
+} // namespace ioThreadedWriter
 
 #endif
