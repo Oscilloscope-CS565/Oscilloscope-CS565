@@ -1,0 +1,65 @@
+@startuml FT245R_UI_Only
+'==============================================================
+' UI-only class diagram — Qt MVC (simplified)
+' External Qt base classes are represented as stereotypes on
+' each class instead of separate boxes, to reduce clutter.
+'==============================================================
+
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 70
+skinparam class {
+  BackgroundColor #FDFDFD
+  BorderColor     #444444
+  ArrowColor      #444444
+}
+hide members
+
+' ----- Controller -----
+class MainWindow <<QMainWindow>>
+
+' ----- Model -----
+class OscilloscopeModel <<QObject>>
+
+' ----- View family -----
+interface AbstractOscilloscopeView
+
+together {
+  class CompactOscilloscopeView   <<QWidget>>
+  class WorkspaceOscilloscopeView <<QWidget>>
+}
+
+class WaveformWidget <<QWidget>>
+
+' ---------- Realization ----------
+AbstractOscilloscopeView <|.. CompactOscilloscopeView
+AbstractOscilloscopeView <|.. WorkspaceOscilloscopeView
+
+' ---------- Composition (ownership) ----------
+MainWindow                *-- OscilloscopeModel
+MainWindow                *-- CompactOscilloscopeView
+MainWindow                *-- WorkspaceOscilloscopeView
+CompactOscilloscopeView   *-- WaveformWidget
+WorkspaceOscilloscopeView *-- WaveformWidget
+
+' ---------- Aggregation (non-owning alias) ----------
+CompactOscilloscopeView   o--> OscilloscopeModel : model_
+WorkspaceOscilloscopeView o--> OscilloscopeModel : model_
+
+' ---------- One usage note, rather than many arrows ----------
+note right of OscilloscopeModel
+Emits Qt signals:
+  samplesUpdated / logLine / errorMessage
+ - views  receive samplesUpdated + logLine
+ - window receives errorMessage
+end note
+
+note bottom of MainWindow
+On view switch:
+ unbind old view -> swap widget
+ -> bind model to new view
+Only one view is wired at a time.
+end note
+
+@enduml

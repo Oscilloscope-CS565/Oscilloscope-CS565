@@ -1,0 +1,55 @@
+@startuml FT245R_01_Overview
+'==============================================================
+' Diagram 1 / 6 — Package-level overview
+' Only the package-to-package dependency is drawn here.
+' Intra-package relationships are shown in diagrams 02 – 06.
+'==============================================================
+
+skinparam shadowing false
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FDFDFD
+  BorderColor     #444444
+  ArrowColor      #444444
+}
+hide members
+
+package "ioLibrary (libioLibrary.a)" as ioLib <<Library>> {
+  together {
+    class FtdiDevice
+    class ioBuffer
+    class ioRead
+    class ioWrite
+  }
+  together {
+    class CircularBuffer
+    class ThreadedReader
+    class ScaleShiftPipeline
+    class ThreadedWriter
+  }
+}
+
+package "ui/ (oscilloscope_qt)" as uiApp <<Application>> {
+  class OscilloscopeModel            <<QObject>>
+  class MainWindow                   <<QMainWindow>>
+  interface AbstractOscilloscopeView
+  class CompactOscilloscopeView      <<QWidget>>
+  class WorkspaceOscilloscopeView    <<QWidget>>
+  class WaveformWidget               <<QWidget>>
+}
+
+uiApp ..> ioLib : uses
+
+note right of ioLib
+Diagram 02 — single-threaded helpers
+Diagram 03 — multithreaded pipeline
+end note
+
+note right of uiApp
+Diagram 04 — Model
+Diagram 05 — View family
+Diagram 06 — Controller
+end note
+
+@enduml

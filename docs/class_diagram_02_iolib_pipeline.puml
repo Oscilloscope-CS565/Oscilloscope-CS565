@@ -1,0 +1,57 @@
+@startuml FT245R_03_ioLib_Pipeline
+'==============================================================
+' Diagram 3 / 6 — ioLibrary: multithreaded pipeline
+' Two CircularBuffer roles are shown as separate nodes so the
+' data flow stays linear and orthogonal.
+'==============================================================
+
+left to right direction
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 55
+skinparam ranksep 65
+skinparam class {
+  BackgroundColor #FDFDFD
+  BorderColor     #444444
+  ArrowColor      #444444
+}
+hide members
+
+class FtdiDevice <<from ioLibrary>>
+
+class ThreadedReader
+class ScaleShiftPipeline
+class ThreadedWriter
+
+class "rawBuffer\n: CircularBuffer"       as RawBuf
+class "processedBuffer\n: CircularBuffer" as ProcBuf
+
+' Linear aggregation chain (producer → ring buffer → ... → consumer)
+ThreadedReader     o--> RawBuf  : producer
+RawBuf             o--> ScaleShiftPipeline : inBuf
+ScaleShiftPipeline o--> ProcBuf : outBuf
+ProcBuf            o--> ThreadedWriter : consumer
+
+' Device references (off-chain)
+ThreadedReader o--> FtdiDevice : device*
+ThreadedWriter o--> FtdiDevice : device* (optional)
+
+' Short notes
+note bottom of RawBuf
+Thread-safe ring buffer.
+setDone() unblocks both ends
+so the consumer can drain.
+end note
+
+note top of ScaleShiftPipeline
+clamp( round(scale·b + shift) )
++ optional DB0 toggle
++ sample callback
+end note
+
+note top of ThreadedWriter
+Sink = FtdiDevice OR file
+(chosen by constructor)
+end note
+
+@enduml

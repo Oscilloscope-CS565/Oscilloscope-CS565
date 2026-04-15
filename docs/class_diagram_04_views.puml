@@ -1,0 +1,51 @@
+@startuml FT245R_05_Views
+'==============================================================
+' Diagram 5 / 6 — Qt MVC: View family
+'==============================================================
+
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 55
+skinparam ranksep 65
+skinparam class {
+  BackgroundColor #FDFDFD
+  BorderColor     #444444
+  ArrowColor      #444444
+}
+hide members
+
+interface AbstractOscilloscopeView
+
+together {
+  class CompactOscilloscopeView   <<QWidget>>
+  class WorkspaceOscilloscopeView <<QWidget>>
+}
+
+class WaveformWidget     <<QWidget>>
+class OscilloscopeModel  <<from ui>>
+
+' Realization
+AbstractOscilloscopeView <|.. CompactOscilloscopeView
+AbstractOscilloscopeView <|.. WorkspaceOscilloscopeView
+
+' Composition — each view owns its waveform widget
+CompactOscilloscopeView   *--> WaveformWidget
+WorkspaceOscilloscopeView *--> WaveformWidget
+
+' Aggregation — model pointer is an alias set in bindModel()
+CompactOscilloscopeView   o--> OscilloscopeModel : model_
+WorkspaceOscilloscopeView o--> OscilloscopeModel : model_
+
+note right of AbstractOscilloscopeView
+Pure interface — lets the
+controller swap views
+polymorphically.
+end note
+
+note bottom of OscilloscopeModel
+Views subscribe to its
+samplesUpdated / logLine
+signals via bindModel().
+end note
+
+@enduml
