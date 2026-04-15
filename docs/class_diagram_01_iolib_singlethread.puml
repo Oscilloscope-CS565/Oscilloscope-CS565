@@ -1,0 +1,52 @@
+@startuml FT245R_02_ioLib_SingleThread
+'==============================================================
+' Diagram 2 / 6 — ioLibrary: single-threaded layer
+'==============================================================
+
+left to right direction
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 55
+skinparam ranksep 65
+skinparam class {
+  BackgroundColor #FDFDFD
+  BorderColor     #444444
+  ArrowColor      #444444
+}
+hide members
+
+together {
+  class ioRead
+  class ioWrite
+}
+
+together {
+  class FtdiDevice
+  class ioBuffer
+}
+
+' Aggregation — ioRead / ioWrite reference but do not own the resources
+ioRead  o--> FtdiDevice : device*
+ioRead  o--> ioBuffer   : buffer*
+ioWrite o--> FtdiDevice : device*
+ioWrite o--> ioBuffer   : buffer*
+
+' Short notes
+note top of FtdiDevice
+Wraps all FT_* calls.
+Internal mutex → safe to
+share across threads.
+end note
+
+note bottom of ioRead
+Fixed-rate blocking loop:
+device->read() into buffer.
+end note
+
+note bottom of ioWrite
+Fixed-rate blocking loop:
+device->write() from buffer
+(offset rotates).
+end note
+
+@enduml

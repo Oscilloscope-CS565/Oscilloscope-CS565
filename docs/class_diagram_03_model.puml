@@ -1,0 +1,42 @@
+@startuml FT245R_04_Model
+'==============================================================
+' Diagram 4 / 6 — Qt MVC: the Model
+'==============================================================
+
+left to right direction
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 55
+skinparam ranksep 65
+skinparam class {
+  BackgroundColor #FDFDFD
+  BorderColor     #444444
+  ArrowColor      #444444
+}
+hide members
+
+class OscilloscopeModel <<QObject>>
+
+together {
+  class FtdiDevice         <<from ioLibrary>>
+  class CircularBuffer     <<from ioLibrary>>
+  class ThreadedReader     <<from ioLibrary>>
+  class ScaleShiftPipeline <<from ioLibrary>>
+  class ThreadedWriter     <<from ioLibrary>>
+}
+
+' Composition — Model owns the whole pipeline graph
+OscilloscopeModel *--> FtdiDevice         : unique_ptr x2
+OscilloscopeModel *--> CircularBuffer     : unique_ptr x2
+OscilloscopeModel *--> ThreadedReader
+OscilloscopeModel *--> ScaleShiftPipeline
+OscilloscopeModel *--> ThreadedWriter
+
+note right of OscilloscopeModel
+Builds / tears down the pipeline
+in start / stopAcquisition().
+Emits Qt signals samplesUpdated,
+logLine, errorMessage.
+end note
+
+@enduml

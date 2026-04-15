@@ -1,0 +1,46 @@
+@startuml FT245R_06_Controller
+'==============================================================
+' Diagram 6 / 6 — Qt MVC: Controller wiring
+'==============================================================
+
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 55
+skinparam ranksep 65
+skinparam class {
+  BackgroundColor #FDFDFD
+  BorderColor     #444444
+  ArrowColor      #444444
+}
+hide members
+
+class MainWindow        <<QMainWindow>>
+class OscilloscopeModel <<from ui>>
+
+interface AbstractOscilloscopeView <<from ui>>
+
+together {
+  class CompactOscilloscopeView   <<from ui>>
+  class WorkspaceOscilloscopeView <<from ui>>
+}
+
+' Realization
+AbstractOscilloscopeView <|.. CompactOscilloscopeView
+AbstractOscilloscopeView <|.. WorkspaceOscilloscopeView
+
+' Composition — MainWindow owns model + both concrete views
+MainWindow *--> OscilloscopeModel
+MainWindow *--> CompactOscilloscopeView
+MainWindow *--> WorkspaceOscilloscopeView
+
+' Aggregation — currentView_ is a non-owning alias to the active view
+MainWindow o--> AbstractOscilloscopeView : currentView_
+
+note right of MainWindow
+View switch:
+ unbind old → swap widget
+ → bind model to new.
+Only one view is wired at a time.
+end note
+
+@enduml
