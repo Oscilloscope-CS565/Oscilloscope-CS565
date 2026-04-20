@@ -969,6 +969,7 @@ oscilloscope_qt_autogen/timestamp: /Library/Developer/CommandLineTools/SDKs/MacO
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.h \
   /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QMutex \
   /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QObject \
+  /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QPoint \
   /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QString \
   /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QVector \
   /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QtGlobal \
@@ -8998,6 +8999,7 @@ CMakeFiles/oscilloscope_qt.dir/oscilloscope_qt_autogen/mocs_compilation.cpp.o: o
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QList \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QMutex \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QString \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtGlobal \
@@ -11436,6 +11438,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o: /Users/zhongz
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QMutex \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QString \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtGlobal \
@@ -12670,6 +12673,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o: /Users/zhongzhangniantong/
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QMutex \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QString \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtGlobal \
@@ -14995,6 +14999,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: /Users/zhongzhangniant
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QList \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QRect \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QSize \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QSizeF \
@@ -15140,9 +15145,13 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: /Users/zhongzhangniant
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qversiontagging.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qxptype_traits.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qyieldcpu.h \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QMouseEvent \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPaintEvent \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPainter \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPainterPath \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QResizeEvent \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QTransform \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QWheelEvent \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qaction.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qbitmap.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qbrush.h \
@@ -15163,6 +15172,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: /Users/zhongzhangniant
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qkeysequence.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpaintdevice.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpainter.h \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpainterpath.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpalette.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpen.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpixelformat.h \
@@ -15182,7 +15192,11 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: /Users/zhongzhangniant
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qvector2d.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qvectornd.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qwindowdefs.h \
+  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QAbstractSlider \
+  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QScrollBar \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QWidget \
+  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qabstractslider.h \
+  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qscrollbar.h \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qsizepolicy.h \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qtwidgets-config.h \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qtwidgetsexports.h \
@@ -16217,6 +16231,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o: /Users/zhon
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QMutex \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QString \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtGlobal \
@@ -16426,17 +16441,25 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o: /Users/zhon
 
 /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QSplitter:
 
+/opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qabstractslider.h:
+
 /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qvector2d.h:
 
 /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpointingdevice.h:
+
+/opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpainterpath.h:
 
 /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qinputdevice.h:
 
 /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qevent.h:
 
+/opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QWheelEvent:
+
 /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QTransform:
 
 /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPaintEvent:
+
+/opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QMouseEvent:
 
 /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QSizeF:
 
@@ -16709,6 +16732,8 @@ oscilloscope_qt_autogen/UYX5XTB5RZ/moc_ioCompactOscilloscopeView.cpp:
 /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtresource.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/accumulate.h:
+
+/opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPainterPath:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/assert.h:
 
@@ -17384,6 +17409,8 @@ oscilloscope_qt_autogen/UYX5XTB5RZ/moc_ioCompactOscilloscopeView.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/arithmetic.h:
 
+/opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qscrollbar.h:
+
 /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qfontvariableaxis.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_destructible.h:
@@ -17826,12 +17853,6 @@ oscilloscope_qt_autogen/mocs_compilation.cpp:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_ptrdiff_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/semiregular.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/bit:
-
-/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_nullptr_t.h:
-
 /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_null.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__algorithm/ranges_remove_copy_if.h:
@@ -18195,6 +18216,8 @@ oscilloscope_qt_autogen/mocs_compilation.cpp:
 /opt/homebrew/opt/qt/lib/cmake/Qt6Gui/Qt6QJpegPluginTargets.cmake:
 
 /opt/homebrew/opt/qt/lib/cmake/Qt6Gui/Qt6QICOPluginTargets-release.cmake:
+
+/opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QResizeEvent:
 
 /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/qlatin1stringview.h:
 
@@ -18952,6 +18975,12 @@ oscilloscope_qt_autogen/mocs_compilation.cpp:
 
 /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QString:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_u_short.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_fd_clr.h:
+
+/opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QPoint:
+
 /opt/homebrew/opt/qt/lib/cmake/Qt6DBusTools/Qt6DBusToolsConfigVersionImpl.cmake:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/locale.h:
@@ -19191,10 +19220,6 @@ CMakeFiles/4.3.1/CMakeCXXCompiler.cmake:
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_fd_isset.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_fd_copy.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_u_short.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_fd_clr.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_dev_t.h:
 
@@ -19501,6 +19526,12 @@ CMakeFiles/4.3.1/CMakeCXXCompiler.cmake:
 /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdarg.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/cassert:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/semiregular.h:
+
+/Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_nullptr_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/bit:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_gid_t.h:
 
@@ -19920,6 +19951,8 @@ oscilloscope_qt_autogen/UYX5XTB5RZ/moc_ioOscilloscopeModel.cpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__tuple/tuple_like.h:
 
+/opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QAbstractSlider:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/exchange.h:
 
 /opt/homebrew/opt/qt/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake:
@@ -20235,6 +20268,8 @@ oscilloscope_qt_autogen/UYX5XTB5RZ/moc_ioOscilloscopeModel.cpp:
 oscilloscope_qt_autogen/UYX5XTB5RZ/moc_ioWaveformWidget.cpp:
 
 /opt/homebrew/opt/qt/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginTargets-release.cmake:
+
+/opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QScrollBar:
 
 CMakeFiles/4.3.1/CMakeSystem.cmake:
 
@@ -21401,6 +21436,8 @@ oscilloscope_qt_autogen/moc_predefs.h:
 /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtWidgets.framework/Versions/A/Headers/qtextedit.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__tree:
+
+/opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stdarg_va_arg.h:
 

@@ -2,6 +2,28 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Debug oscilloscope_qt (CodeLLDB)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/oscilloscope_qt",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "cmake build oscilloscope_qt"
+    },
+    {
+      "name": "Debug oscilloscope_qt (CMake + MS cppdbg)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/oscilloscope_qt",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "cmake build oscilloscope_qt"
+    },
+    {
       "name": "Debug on macOS and Windows",
       "type": "cppdbg",
       "request": "launch",

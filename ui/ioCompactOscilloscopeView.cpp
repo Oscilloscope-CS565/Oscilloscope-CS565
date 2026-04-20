@@ -90,6 +90,8 @@ CompactOscilloscopeView::CompactOscilloscopeView(QWidget *parent)
     connect(dualFtdiCheck_, &QCheckBox::checkStateChanged, this, &CompactOscilloscopeView::applyDualFtdi);
     connect(writeBackCheck_, &QCheckBox::checkStateChanged, this, &CompactOscilloscopeView::applyWriteBack);
     connect(blinkDb0Check_, &QCheckBox::checkStateChanged, this, &CompactOscilloscopeView::applyBlinkDb0);
+
+    waveform_->setTraceParams(scaleSpin_->value(), shiftSpin_->value());
 }
 
 QWidget *CompactOscilloscopeView::asWidget() {
@@ -123,6 +125,7 @@ void CompactOscilloscopeView::unbindModel() {
 }
 
 void CompactOscilloscopeView::onSamplesUpdated(const QVector<double> &samples) {
+    waveform_->setTraceParams(scaleSpin_->value(), shiftSpin_->value());
     waveform_->setSamples(samples);
 }
 
@@ -143,12 +146,14 @@ void CompactOscilloscopeView::handleStop() {
 }
 
 void CompactOscilloscopeView::applyScale(double value) {
+    waveform_->setTraceParams(value, shiftSpin_->value());
     if (model_ != nullptr) {
         model_->setScale(value);
     }
 }
 
 void CompactOscilloscopeView::applyShift(double value) {
+    waveform_->setTraceParams(scaleSpin_->value(), value);
     if (model_ != nullptr) {
         model_->setShift(value);
     }

@@ -1221,6 +1221,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o: \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qtextformat.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpen.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QAction \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QActionGroup \

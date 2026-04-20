@@ -100,6 +100,8 @@ WorkspaceOscilloscopeView::WorkspaceOscilloscopeView(QWidget *parent)
     connect(dualFtdiCheck_, &QCheckBox::checkStateChanged, this, &WorkspaceOscilloscopeView::applyDualFtdi);
     connect(writeBackCheck_, &QCheckBox::checkStateChanged, this, &WorkspaceOscilloscopeView::applyWriteBack);
     connect(blinkDb0Check_, &QCheckBox::checkStateChanged, this, &WorkspaceOscilloscopeView::applyBlinkDb0);
+
+    waveform_->setTraceParams(scaleSpin_->value(), shiftSpin_->value());
 }
 
 QWidget *WorkspaceOscilloscopeView::asWidget() {
@@ -133,6 +135,7 @@ void WorkspaceOscilloscopeView::unbindModel() {
 }
 
 void WorkspaceOscilloscopeView::onSamplesUpdated(const QVector<double> &samples) {
+    waveform_->setTraceParams(scaleSpin_->value(), shiftSpin_->value());
     waveform_->setSamples(samples);
 }
 
@@ -153,12 +156,14 @@ void WorkspaceOscilloscopeView::handleStop() {
 }
 
 void WorkspaceOscilloscopeView::applyScale(double value) {
+    waveform_->setTraceParams(value, shiftSpin_->value());
     if (model_ != nullptr) {
         model_->setScale(value);
     }
 }
 
 void WorkspaceOscilloscopeView::applyShift(double value) {
+    waveform_->setTraceParams(scaleSpin_->value(), value);
     if (model_ != nullptr) {
         model_->setShift(value);
     }

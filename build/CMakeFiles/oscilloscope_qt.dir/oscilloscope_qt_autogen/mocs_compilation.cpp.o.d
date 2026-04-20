@@ -1216,6 +1216,7 @@ CMakeFiles/oscilloscope_qt.dir/oscilloscope_qt_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qtextformat.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpen.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/oscilloscope_qt_autogen/UYX5XTB5RZ/../../../ui/ioWaveformWidget.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QList \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtmochelpers.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtmocconstants.h \
