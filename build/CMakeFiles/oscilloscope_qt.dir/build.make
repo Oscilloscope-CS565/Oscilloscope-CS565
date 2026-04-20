@@ -72,7 +72,7 @@ include CMakeFiles/oscilloscope_qt.dir/flags.make
 oscilloscope_qt_autogen/timestamp: /opt/homebrew/opt/qt/share/qt/libexec/moc
 oscilloscope_qt_autogen/timestamp: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target oscilloscope_qt"
-	/opt/homebrew/bin/cmake -E cmake_autogen /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles/oscilloscope_qt_autogen.dir/AutogenInfo.json ""
+	/opt/homebrew/bin/cmake -E cmake_autogen /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles/oscilloscope_qt_autogen.dir/AutogenInfo.json Debug
 	/opt/homebrew/bin/cmake -E touch /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/oscilloscope_qt_autogen/timestamp
 
 CMakeFiles/oscilloscope_qt.dir/codegen:

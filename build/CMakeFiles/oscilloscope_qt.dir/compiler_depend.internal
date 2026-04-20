@@ -970,6 +970,7 @@
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.h
  /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QMutex
  /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QObject
+ /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QPoint
  /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QString
  /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QVector
  /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/QtGlobal
@@ -9008,6 +9009,7 @@ CMakeFiles/oscilloscope_qt.dir/oscilloscope_qt_autogen/mocs_compilation.cpp.o
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QList
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QMutex
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject
+ /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QString
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtGlobal
@@ -11448,6 +11450,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.h
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QMutex
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject
+ /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QString
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtGlobal
@@ -12683,6 +12686,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.h
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QMutex
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject
+ /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QString
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtGlobal
@@ -15010,6 +15014,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.h
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QList
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject
+ /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QRect
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QSize
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QSizeF
@@ -15155,9 +15160,13 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qversiontagging.h
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qxptype_traits.h
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qyieldcpu.h
+ /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QMouseEvent
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPaintEvent
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPainter
+ /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPainterPath
+ /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QResizeEvent
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QTransform
+ /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QWheelEvent
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qaction.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qbitmap.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qbrush.h
@@ -15178,6 +15187,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qkeysequence.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpaintdevice.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpainter.h
+ /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpainterpath.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpalette.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpen.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpixelformat.h
@@ -15197,7 +15207,11 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qvector2d.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qvectornd.h
  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qwindowdefs.h
+ /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QAbstractSlider
+ /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QScrollBar
  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QWidget
+ /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qabstractslider.h
+ /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qscrollbar.h
  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qsizepolicy.h
  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qtwidgets-config.h
  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qtwidgetsexports.h
@@ -16233,6 +16247,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.h
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QMutex
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QObject
+ /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QString
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector
  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtGlobal

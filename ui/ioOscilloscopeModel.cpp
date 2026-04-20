@@ -82,16 +82,20 @@ void OscilloscopeModel::appendDisplaySample(unsigned char value) {
     QVector<double> snapshot;
     {
         QMutexLocker lock(&displayMutex_);
-        // When only DB0 toggles, value/255 is tiny; with blink overlay use full-scale bit0 for plot
+        // Blink: o = (v&0xFE)|blinkBit — only LSB flips, so value/255 looks flat. Plotting only (value&1)
+        // drops pipeline Scale/Shift (they live in the upper bits of v). Combine plateau (v with LSB 0)
+        // with a ±0.5 normalized swing from DB0 so zigzag stays large and DC still tracks Scale/Shift.
         double y;
         if (blinkDb0_) {
-            y = (value & 1u) ? 1.0 : 0.0;
+            const double plateau = static_cast<double>(value & 0xFEU) / 255.0;
+            y = plateau * 0.5 + static_cast<double>(value & 1U) * 0.5;
         } else {
             y = static_cast<double>(value) / 255.0;
         }
         displaySamples_.push_back(y);
-        if (displaySamples_.size() > 512) {
-            displaySamples_.remove(0, displaySamples_.size() - 512);
+        static const int kMaxDisplayHistory = 65536;
+        if (displaySamples_.size() > kMaxDisplayHistory) {
+            displaySamples_.remove(0, displaySamples_.size() - kMaxDisplayHistory);
         }
         ++displayEmitCounter_;
         const bool emitNow = blinkDb0_ || (displayEmitCounter_ % 4 == 0);

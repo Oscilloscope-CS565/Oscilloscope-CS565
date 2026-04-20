@@ -1193,6 +1193,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o: \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioThreadedReader.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioThreadedWriter.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QCheckBox \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qcheckbox.h \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qabstractbutton.h \

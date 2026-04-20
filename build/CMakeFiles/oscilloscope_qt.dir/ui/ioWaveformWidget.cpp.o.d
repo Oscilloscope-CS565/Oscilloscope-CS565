@@ -1,15 +1,19 @@
 CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.cpp \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qvector.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qlist.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qarraydatapointer.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qarraydataops.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qarraydata.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qpair.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcontainerfwd.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtconfigmacros.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QPoint \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qpoint.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcheckedint_impl.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qassert.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcompilerdetection.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qprocessordetection.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qsystemdetection.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtconfiginclude.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/version \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__assert \
@@ -20,16 +24,6 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__availability \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qconfig.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtcore-config.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtdeprecationdefinitions.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcompilerdetection.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qprocessordetection.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qsystemdetection.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/atomic \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/utility \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/as_const.h \
@@ -343,24 +337,27 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__std_mbstate_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__mbstate_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_mbstate_t.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtconfigmacros.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtdeprecationdefinitions.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtversionchecks.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtypes.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qassert.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtcoreexports.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtdeprecationmarkers.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtclasshelpermacros.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtnoop.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcompare.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qglobal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_rsize_t.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtcoreglobal.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtpreprocessorsupport.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtypes.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtversion.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtypeinfo.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcontainerfwd.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qsysinfo.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qlogging.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qflags.h \
@@ -857,11 +854,6 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtresource.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qttranslation.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qversiontagging.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcontainertools_impl.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qxptype_traits.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q23type_traits.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qnamespace.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcompare.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qstdlibdetection.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcomparehelpers.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/functional \
@@ -996,16 +988,24 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/unary_negate.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtmetamacros.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q20functional.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q20memory.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q17memory.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qhashfunctions.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qstring.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qchar.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qstringview.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qbytearray.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qrefcount.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qnamespace.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qtmetamacros.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qarraydata.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qpair.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qarraydatapointer.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qarraydataops.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcontainertools_impl.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qxptype_traits.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q23type_traits.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q20functional.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q20memory.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q17memory.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qbytearrayalgorithms.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qbytearrayview.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qstringfwd.h \
@@ -1031,6 +1031,11 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/saturation_arithmetic.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/transform_exclusive_scan.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/transform_inclusive_scan.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q23utility.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q20utility.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QVector \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qvector.h \
+  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qlist.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qiterator.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qbytearraylist.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qstringlist.h \
@@ -1086,9 +1091,6 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/literals.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qmargins.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcheckedint_impl.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q23utility.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/q20utility.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qaction.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qkeysequence.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qicon.h \
@@ -1096,7 +1098,6 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpixmap.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpaintdevice.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qrect.h \
-  /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qpoint.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qcolor.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qrgb.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qrgba64.h \
@@ -1134,7 +1135,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qsizepolicy.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qcursor.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qbitmap.h \
-  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPaintEvent \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QMouseEvent \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qevent.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qcoreevent.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qbasictimer.h \
@@ -1163,8 +1164,17 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qinputmethod.h \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/qlocale.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qguiapplication_platform.h \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPaintEvent \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPainter \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpainter.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qtextoption.h \
   /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpen.h \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QPainterPath \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/qpainterpath.h \
+  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QAbstractSlider \
+  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qabstractslider.h \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QResizeEvent \
+  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QScrollBar \
+  /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qscrollbar.h \
+  /opt/homebrew/opt/qt/lib/QtGui.framework/Headers/QWheelEvent \
   /opt/homebrew/opt/qt/lib/QtCore.framework/Headers/QtMath
