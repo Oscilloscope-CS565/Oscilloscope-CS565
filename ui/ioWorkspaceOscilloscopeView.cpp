@@ -124,6 +124,10 @@ void WorkspaceOscilloscopeView::bindModel(ioOscilloscopeModel::OscilloscopeModel
                                 this, &WorkspaceOscilloscopeView::onLogLine));
     model_->setWriteBackToReadDevice(writeBackCheck_->isEnabled() && writeBackCheck_->isChecked());
     model_->setBlinkDb0(blinkDb0Check_->isChecked());
+
+    readIndexSpin_->blockSignals(true);
+    readIndexSpin_->setValue(model_->readDeviceIndex());
+    readIndexSpin_->blockSignals(false);
 }
 
 void WorkspaceOscilloscopeView::unbindModel() {

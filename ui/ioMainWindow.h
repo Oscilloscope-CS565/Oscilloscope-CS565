@@ -12,7 +12,8 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    /** personNumber: 1 or 2 — window title and default read FTDI index (0 / 1) for running two instances. */
+    explicit MainWindow(int personNumber, QWidget *parent = nullptr);
 
 private slots:
     void showCompactView();
