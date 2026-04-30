@@ -10,14 +10,18 @@
 
 namespace ioMainWindow {
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(int personNumber, QWidget *parent)
     : QMainWindow(parent),
       model_(new ioOscilloscopeModel::OscilloscopeModel(this)),
       stack_(new QStackedWidget(this)),
       compactView_(new ioCompactOscilloscopeView::CompactOscilloscopeView(this)),
       workspaceView_(new ioWorkspaceOscilloscopeView::WorkspaceOscilloscopeView(this)),
       currentView_(nullptr) {
-    setWindowTitle(tr("CS565 Oscilloscope / FTDI pipeline"));
+    const int person = (personNumber == 2) ? 2 : 1;
+    const int readIdx = person - 1;
+    model_->setReadDeviceIndex(readIdx);
+
+    setWindowTitle(tr("CS565 Oscilloscope / FTDI pipeline — Person %1").arg(person));
 
     stack_->addWidget(compactView_->asWidget());
     stack_->addWidget(workspaceView_->asWidget());
@@ -44,7 +48,10 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::onModelError);
 
     showCompactView();
-    statusBar()->showMessage(tr("Ready — use View menu to switch UI"));
+    statusBar()->showMessage(
+        tr("Ready — Person %1, default read FTDI index %2. Launch a second instance to use the other person.")
+            .arg(person)
+            .arg(readIdx));
 }
 
 void MainWindow::detachCurrentView() {

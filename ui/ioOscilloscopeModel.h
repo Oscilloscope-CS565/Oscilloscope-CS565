@@ -25,6 +25,7 @@ public:
     ~OscilloscopeModel() override;
 
     bool isRunning() const { return running_.load(); }
+    int readDeviceIndex() const { return readDeviceIndex_; }
 
 public slots:
     void startAcquisition();
