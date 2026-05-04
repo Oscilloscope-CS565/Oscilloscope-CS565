@@ -1,9 +1,10 @@
 CXX = g++
-CXXFLAGS = -I. -IioLibrary -g -std=c++11 -pthread
+CXXFLAGS = -I. -IioLibrary -g -std=c++17 -pthread
 LDFLAGS = -L. -framework CoreFoundation -framework IOKit -pthread
 
 IO_SRCS = ioLibrary/ioBuffer.cpp ioLibrary/ioRead.cpp ioLibrary/ioWrite.cpp \
           ioLibrary/ioFtdiDevice.cpp ioLibrary/ioCircularBuffer.cpp \
+          ioLibrary/ioByteSource.cpp ioLibrary/ioByteSink.cpp \
           ioLibrary/ioThreadedReader.cpp ioLibrary/ioThreadedWriter.cpp \
           ioLibrary/ioScaleShiftPipeline.cpp
 IO_OBJS = $(IO_SRCS:.cpp=.o)

@@ -179,6 +179,54 @@ ioLibrary/ioBuffer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/oscilloscope_qt.dir/build.make CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioBuffer.cpp.s
 .PHONY : ioLibrary/ioBuffer.cpp.s
 
+ioLibrary/ioByteSink.o: ioLibrary/ioByteSink.cpp.o
+.PHONY : ioLibrary/ioByteSink.o
+
+# target to build an object file
+ioLibrary/ioByteSink.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/oscilloscope_qt.dir/build.make CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o
+.PHONY : ioLibrary/ioByteSink.cpp.o
+
+ioLibrary/ioByteSink.i: ioLibrary/ioByteSink.cpp.i
+.PHONY : ioLibrary/ioByteSink.i
+
+# target to preprocess a source file
+ioLibrary/ioByteSink.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/oscilloscope_qt.dir/build.make CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.i
+.PHONY : ioLibrary/ioByteSink.cpp.i
+
+ioLibrary/ioByteSink.s: ioLibrary/ioByteSink.cpp.s
+.PHONY : ioLibrary/ioByteSink.s
+
+# target to generate assembly for a file
+ioLibrary/ioByteSink.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/oscilloscope_qt.dir/build.make CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.s
+.PHONY : ioLibrary/ioByteSink.cpp.s
+
+ioLibrary/ioByteSource.o: ioLibrary/ioByteSource.cpp.o
+.PHONY : ioLibrary/ioByteSource.o
+
+# target to build an object file
+ioLibrary/ioByteSource.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/oscilloscope_qt.dir/build.make CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o
+.PHONY : ioLibrary/ioByteSource.cpp.o
+
+ioLibrary/ioByteSource.i: ioLibrary/ioByteSource.cpp.i
+.PHONY : ioLibrary/ioByteSource.i
+
+# target to preprocess a source file
+ioLibrary/ioByteSource.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/oscilloscope_qt.dir/build.make CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.i
+.PHONY : ioLibrary/ioByteSource.cpp.i
+
+ioLibrary/ioByteSource.s: ioLibrary/ioByteSource.cpp.s
+.PHONY : ioLibrary/ioByteSource.s
+
+# target to generate assembly for a file
+ioLibrary/ioByteSource.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/oscilloscope_qt.dir/build.make CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.s
+.PHONY : ioLibrary/ioByteSource.cpp.s
+
 ioLibrary/ioCircularBuffer.o: ioLibrary/ioCircularBuffer.cpp.o
 .PHONY : ioLibrary/ioCircularBuffer.o
 
@@ -529,6 +577,12 @@ help:
 	@echo "... ioLibrary/ioBuffer.o"
 	@echo "... ioLibrary/ioBuffer.i"
 	@echo "... ioLibrary/ioBuffer.s"
+	@echo "... ioLibrary/ioByteSink.o"
+	@echo "... ioLibrary/ioByteSink.i"
+	@echo "... ioLibrary/ioByteSink.s"
+	@echo "... ioLibrary/ioByteSource.o"
+	@echo "... ioLibrary/ioByteSource.i"
+	@echo "... ioLibrary/ioByteSource.s"
 	@echo "... ioLibrary/ioCircularBuffer.o"
 	@echo "... ioLibrary/ioCircularBuffer.i"
 	@echo "... ioLibrary/ioCircularBuffer.s"

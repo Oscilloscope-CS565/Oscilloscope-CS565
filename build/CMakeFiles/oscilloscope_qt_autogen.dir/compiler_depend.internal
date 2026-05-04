@@ -942,6 +942,10 @@
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ftd2xx.h
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioBuffer.cpp
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioBuffer.h
+ /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp
+ /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.h
+ /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp
+ /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.h
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.cpp
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.h
  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioFtdiDevice.cpp

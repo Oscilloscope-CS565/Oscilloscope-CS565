@@ -1192,7 +1192,9 @@ CMakeFiles/oscilloscope_qt.dir/oscilloscope_qt_autogen/mocs_compilation.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioThreadedReader.h \
+  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioThreadedWriter.h \
+  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.h \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/QCheckBox \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qcheckbox.h \
   /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers/qabstractbutton.h \

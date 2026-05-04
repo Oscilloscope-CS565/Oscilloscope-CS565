@@ -162,10 +162,38 @@ CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioCircularBuffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioCircularBuffer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.cpp -o CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioCircularBuffer.cpp.s
 
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp
+
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp > CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.i
+
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp -o CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.s
+
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp
+
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp > CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.i
+
+CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp -o CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.s
+
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioThreadedReader.cpp
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioThreadedReader.cpp
 
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.i: cmake_force
@@ -179,7 +207,7 @@ CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.s: cmake_force
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioThreadedWriter.cpp
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioThreadedWriter.cpp
 
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.i: cmake_force
@@ -193,7 +221,7 @@ CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.s: cmake_force
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioScaleShiftPipeline.cpp
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioScaleShiftPipeline.cpp
 
 CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.i: cmake_force
@@ -207,7 +235,7 @@ CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.s: cmake_force
 CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/qt_main.cpp
 CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/qt_main.cpp
 
 CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.i: cmake_force
@@ -221,7 +249,7 @@ CMakeFiles/oscilloscope_qt.dir/qt_main.cpp.s: cmake_force
 CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioOscilloscopeModel.cpp
 CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioOscilloscopeModel.cpp
 
 CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.i: cmake_force
@@ -235,7 +263,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioOscilloscopeModel.cpp.s: cmake_force
 CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.cpp
 CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWaveformWidget.cpp
 
 CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.i: cmake_force
@@ -249,7 +277,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWaveformWidget.cpp.s: cmake_force
 CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioCompactOscilloscopeView.cpp
 CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioCompactOscilloscopeView.cpp
 
 CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.i: cmake_force
@@ -263,7 +291,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioCompactOscilloscopeView.cpp.s: cmake_force
 CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.cpp
 CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioWorkspaceOscilloscopeView.cpp
 
 CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.i: cmake_force
@@ -277,7 +305,7 @@ CMakeFiles/oscilloscope_qt.dir/ui/ioWorkspaceOscilloscopeView.cpp.s: cmake_force
 CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o: CMakeFiles/oscilloscope_qt.dir/flags.make
 CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioMainWindow.cpp
 CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o: CMakeFiles/oscilloscope_qt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o -MF CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o.d -o CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.o -c /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui/ioMainWindow.cpp
 
 CMakeFiles/oscilloscope_qt.dir/ui/ioMainWindow.cpp.i: cmake_force
@@ -296,6 +324,8 @@ oscilloscope_qt_OBJECTS = \
 "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioWrite.cpp.o" \
 "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioFtdiDevice.cpp.o" \
 "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioCircularBuffer.cpp.o" \
+"CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o" \
+"CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o" \
 "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o" \
 "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o" \
 "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o" \
@@ -315,6 +345,8 @@ oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioRead.cpp.o
 oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioWrite.cpp.o
 oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioFtdiDevice.cpp.o
 oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioCircularBuffer.cpp.o
+oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o
+oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o
 oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedReader.cpp.o
 oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioThreadedWriter.cpp.o
 oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioScaleShiftPipeline.cpp.o
@@ -330,7 +362,7 @@ oscilloscope_qt: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/libftd2xx.
 oscilloscope_qt: /opt/homebrew/opt/qt/lib/QtGui.framework/Versions/A/QtGui
 oscilloscope_qt: /opt/homebrew/opt/qt/lib/QtCore.framework/Versions/A/QtCore
 oscilloscope_qt: CMakeFiles/oscilloscope_qt.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable oscilloscope_qt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable oscilloscope_qt"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/oscilloscope_qt.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
