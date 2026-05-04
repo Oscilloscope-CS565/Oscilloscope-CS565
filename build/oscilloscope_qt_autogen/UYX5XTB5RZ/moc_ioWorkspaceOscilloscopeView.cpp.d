@@ -934,6 +934,8 @@
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdarg.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/WinTypes.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ftd2xx.h \
+  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.h \
+  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioFtdiDevice.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioScaleShiftPipeline.h \

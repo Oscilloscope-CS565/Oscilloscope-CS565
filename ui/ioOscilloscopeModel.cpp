@@ -1,6 +1,9 @@
 #include "ioOscilloscopeModel.h"
+#include "ioByteSink.h"
+#include "ioByteSource.h"
 #include <QCoreApplication>
 #include <cmath>
+#include <memory>
 
 namespace ioOscilloscopeModel {
 
@@ -135,7 +138,8 @@ void OscilloscopeModel::startAcquisition() {
     rawBuffer_ = std::make_unique<ioCircularBuffer::CircularBuffer>(static_cast<std::size_t>(rawBufferSize_));
     processedBuffer_ = std::make_unique<ioCircularBuffer::CircularBuffer>(static_cast<std::size_t>(rawBufferSize_));
 
-    reader_ = new ioThreadedReader::ThreadedReader(readDevice_.get());
+    reader_ = new ioThreadedReader::ThreadedReader(
+        std::make_unique<ioByteSource::FtdiByteSource>(readDevice_.get()));
     reader_->configure(rawBuffer_.get(), 1, sampleHz_);
 
     pipeline_ = new ioScaleShiftPipeline::ScaleShiftPipeline(rawBuffer_.get(), processedBuffer_.get());
@@ -151,12 +155,15 @@ void OscilloscopeModel::startAcquisition() {
     });
 
     if (dualFtdiOutput_ && writeDevice_) {
-        writer_ = new ioThreadedWriter::ThreadedWriter(writeDevice_.get());
+        writer_ = new ioThreadedWriter::ThreadedWriter(
+            std::make_unique<ioByteSink::FtdiByteSink>(writeDevice_.get()));
     } else if (!dualFtdiOutput_ && writeBackToReadDevice_) {
-        writer_ = new ioThreadedWriter::ThreadedWriter(readDevice_.get());
+        writer_ = new ioThreadedWriter::ThreadedWriter(
+            std::make_unique<ioByteSink::FtdiByteSink>(readDevice_.get()));
     } else {
         const QString path = QCoreApplication::applicationDirPath() + QStringLiteral("/capture.bin");
-        writer_ = new ioThreadedWriter::ThreadedWriter(path.toUtf8().constData());
+        writer_ = new ioThreadedWriter::ThreadedWriter(
+            std::make_unique<ioByteSink::FileByteSink>(path.toUtf8().constData()));
     }
     writer_->configure(processedBuffer_.get(), 1, sampleHz_);
 

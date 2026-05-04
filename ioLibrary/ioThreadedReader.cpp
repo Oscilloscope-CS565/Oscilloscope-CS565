@@ -11,28 +11,32 @@
 
 namespace ioThreadedReader {
 
-ThreadedReader::ThreadedReader(ioFtdiDevice::FtdiDevice *device)
-    : device(device), circBuffer(nullptr), N(0), frequencyHz(0.0), running(false) {}
+ThreadedReader::ThreadedReader(std::unique_ptr<ioByteSource::ByteSource> byteSource)
+    : byteSource_(std::move(byteSource)), circBuffer(nullptr), N(0), frequencyHz(0.0), running(false) {}
 
 ThreadedReader::~ThreadedReader() {
     stop();
 }
 
-void ThreadedReader::configure(ioCircularBuffer::CircularBuffer *buf, std::size_t N, double frequencyHz) {
-    this->circBuffer = buf;
-    this->N = N;
-    this->frequencyHz = frequencyHz;
+void ThreadedReader::configure(ioCircularBuffer::CircularBuffer *buf, std::size_t nBytes, double hz) {
+    circBuffer = buf;
+    N = nBytes;
+    frequencyHz = hz;
 }
 
 void ThreadedReader::start() {
-    if (running.load()) return;
+    if (running.load()) {
+        return;
+    }
     running.store(true);
     readerThread = std::thread(&ThreadedReader::threadFunc, this);
     printf("[Reader] Thread started (N=%zu, freq=%.1f Hz)\n", N, frequencyHz);
 }
 
 void ThreadedReader::stop() {
-    if (!running.load()) return;
+    if (!running.load()) {
+        return;
+    }
     running.store(false);
     if (circBuffer != nullptr) {
         circBuffer->setDone();
@@ -49,7 +53,7 @@ void ThreadedReader::threadFunc() {
     int cycle = 0;
 
     while (running.load()) {
-        FT_STATUS status = device->read(tempBuf, N);
+        FT_STATUS status = byteSource_->readBytes(tempBuf, N);
         if (status != FT_OK) {
             fprintf(stderr, "[Reader] Error: read failed at cycle %d (status %lu)\n",
                     cycle, (unsigned long)status);

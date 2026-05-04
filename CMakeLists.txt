@@ -13,6 +13,8 @@ set(IO_LIBRARY_SOURCES
     ioLibrary/ioWrite.cpp
     ioLibrary/ioFtdiDevice.cpp
     ioLibrary/ioCircularBuffer.cpp
+    ioLibrary/ioByteSource.cpp
+    ioLibrary/ioByteSink.cpp
     ioLibrary/ioThreadedReader.cpp
     ioLibrary/ioThreadedWriter.cpp
     ioLibrary/ioScaleShiftPipeline.cpp

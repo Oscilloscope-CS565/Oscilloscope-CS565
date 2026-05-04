@@ -404,6 +404,18 @@
 			null
 		],
 		[
+			"/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.h",
+			"Mu",
+			"GHAINZKHIS/moc_ioByteSink.cpp",
+			null
+		],
+		[
+			"/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.h",
+			"Mu",
+			"GHAINZKHIS/moc_ioByteSource.cpp",
+			null
+		],
+		[
 			"/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.h",
 			"Mu",
 			"GHAINZKHIS/moc_ioCircularBuffer.cpp",
@@ -529,7 +541,7 @@
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
-	"PARALLEL" : 8,
+	"PARALLEL" : 1,
 	"PARSE_CACHE_FILE" : "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/CMakeFiles/oscilloscope_qt_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/opt/homebrew/opt/qt/share/qt/libexec/moc",
 	"QT_UIC_EXECUTABLE" : "",
@@ -540,6 +552,16 @@
 	[
 		[
 			"/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioBuffer.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp",
 			"Mu",
 			null
 		],

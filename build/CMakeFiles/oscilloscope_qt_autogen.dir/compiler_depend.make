@@ -941,6 +941,10 @@ oscilloscope_qt_autogen/timestamp: /Library/Developer/CommandLineTools/SDKs/MacO
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ftd2xx.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioBuffer.cpp \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioBuffer.h \
+  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp \
+  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.h \
+  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp \
+  /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.cpp \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.h \
   /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioFtdiDevice.cpp \
@@ -1721,8 +1725,6 @@ oscilloscope_qt_autogen/timestamp: /Library/Developer/CommandLineTools/SDKs/MacO
 
 /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h:
 
-/opt/homebrew/Cellar/qtbase/6.11.0/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h:
-
 /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtWidgets.framework/Versions/A/Headers/qpushbutton.h:
 
 /opt/homebrew/opt/qt/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:
@@ -2022,6 +2024,12 @@ oscilloscope_qt_autogen/timestamp: /Library/Developer/CommandLineTools/SDKs/MacO
 /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioScaleShiftPipeline.cpp:
 
 /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.cpp:
+
+/opt/homebrew/Cellar/qtbase/6.11.0/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h:
+
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp:
+
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp:
 
 /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioBuffer.h:
 
@@ -3513,6 +3521,8 @@ oscilloscope_qt_autogen/moc_predefs.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__ios/fpos.h:
 
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__algorithm/swap_ranges.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__algorithm/find_segment_if.h:
@@ -3560,6 +3570,8 @@ oscilloscope_qt_autogen/moc_predefs.h:
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__format/formatter.h:
 
 /opt/homebrew/Cellar/qtbase/6.11.0/lib/QtCore.framework/Versions/A/Headers/qtconfigmacros.h:
+
+/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__algorithm/upper_bound.h:
 

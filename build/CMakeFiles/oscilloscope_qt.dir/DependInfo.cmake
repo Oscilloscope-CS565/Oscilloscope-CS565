@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "oscilloscope_qt_autogen/timestamp" "custom" "oscilloscope_qt_autogen/deps"
   "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioBuffer.cpp" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioBuffer.cpp.o" "gcc" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioBuffer.cpp.o.d"
+  "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSink.cpp" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o" "gcc" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSink.cpp.o.d"
+  "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioByteSource.cpp" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o" "gcc" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioByteSource.cpp.o.d"
   "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.cpp" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioCircularBuffer.cpp.o" "gcc" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioCircularBuffer.cpp.o.d"
   "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioFtdiDevice.cpp" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioFtdiDevice.cpp.o" "gcc" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioFtdiDevice.cpp.o.d"
   "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioRead.cpp" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioRead.cpp.o" "gcc" "CMakeFiles/oscilloscope_qt.dir/ioLibrary/ioRead.cpp.o.d"

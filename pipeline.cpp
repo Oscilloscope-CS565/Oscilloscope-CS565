@@ -1,25 +1,30 @@
+#include <chrono>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <memory>
 #include <thread>
-#include <chrono>
-#include "ioFtdiDevice.h"
+#include "ioByteSink.h"
+#include "ioByteSource.h"
 #include "ioCircularBuffer.h"
+#include "ioFtdiDevice.h"
 #include "ioThreadedReader.h"
 #include "ioThreadedWriter.h"
 
 static void printUsage(const char *progName) {
     printf("Usage: %s [options]\n", progName);
     printf("\nOptions:\n");
+    printf("  --input-file <path>     Read bytes from file (instead of FTDI index 0)\n");
     printf("  --output-file <path>    Write to file (default: output.bin)\n");
     printf("  --output-ftdi <index>   Write to FTDI device at index\n");
     printf("  --freq <hz>             Read/write frequency in Hz (default: 10)\n");
-    printf("  --duration <sec>        Run duration in seconds (default: 10)\n");
+    printf("  --duration <sec>      Run duration in seconds (default: 10)\n");
     printf("  --bufsize <bytes>       Circular buffer size in bytes (default: 1024)\n");
     printf("  --help                  Show this help message\n");
 }
 
 int main(int argc, char *argv[]) {
+    const char *inputFilePath = nullptr;
     const char *outputFilePath = "output.bin";
     int outputFtdiIndex = -1;
     double frequencyHz = 10.0;
@@ -27,7 +32,9 @@ int main(int argc, char *argv[]) {
     std::size_t bufSize = 1024;
 
     for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "--output-file") == 0 && i + 1 < argc) {
+        if (strcmp(argv[i], "--input-file") == 0 && i + 1 < argc) {
+            inputFilePath = argv[++i];
+        } else if (strcmp(argv[i], "--output-file") == 0 && i + 1 < argc) {
             outputFilePath = argv[++i];
             outputFtdiIndex = -1;
         } else if (strcmp(argv[i], "--output-ftdi") == 0 && i + 1 < argc) {
@@ -53,6 +60,11 @@ int main(int argc, char *argv[]) {
     printf("Frequency: %.1f Hz\n", frequencyHz);
     printf("Duration:  %d seconds\n", durationSec);
     printf("Buffer:    %zu bytes\n", bufSize);
+    if (inputFilePath != nullptr) {
+        printf("Input:     file (%s)\n", inputFilePath);
+    } else {
+        printf("Input:     FTDI device (index 0)\n");
+    }
     if (outputFilePath != nullptr) {
         printf("Output:    file (%s)\n", outputFilePath);
     } else {
@@ -61,15 +73,20 @@ int main(int argc, char *argv[]) {
     printf("\n");
 
     ioFtdiDevice::FtdiDevice readDev;
-    if (readDev.open(0) != FT_OK) {
-        fprintf(stderr, "Failed to open input FTDI device. Exiting.\n");
-        return EXIT_FAILURE;
+    if (inputFilePath == nullptr) {
+        if (readDev.open(0) != FT_OK) {
+            fprintf(stderr, "Failed to open input FTDI device. Exiting.\n");
+            return EXIT_FAILURE;
+        }
     }
 
     ioFtdiDevice::FtdiDevice writeDev;
     if (outputFtdiIndex >= 0) {
         if (writeDev.open(outputFtdiIndex) != FT_OK) {
             fprintf(stderr, "Failed to open output FTDI device at index %d. Exiting.\n", outputFtdiIndex);
+            if (inputFilePath == nullptr) {
+                readDev.close();
+            }
             return EXIT_FAILURE;
         }
     }
@@ -77,30 +94,43 @@ int main(int argc, char *argv[]) {
     ioCircularBuffer::CircularBuffer circBuf(bufSize);
     printf("Circular buffer created (%zu bytes).\n\n", bufSize);
 
-    ioThreadedReader::ThreadedReader reader(&readDev);
-    reader.configure(&circBuf, 1, frequencyHz);
+    ioThreadedReader::ThreadedReader *reader = nullptr;
+    if (inputFilePath != nullptr) {
+        reader = new ioThreadedReader::ThreadedReader(std::make_unique<ioByteSource::FileByteSource>(inputFilePath));
+    } else {
+        reader = new ioThreadedReader::ThreadedReader(std::make_unique<ioByteSource::FtdiByteSource>(&readDev));
+    }
+    reader->configure(&circBuf, 1, frequencyHz);
 
     ioThreadedWriter::ThreadedWriter *writer = nullptr;
     if (outputFtdiIndex >= 0) {
-        writer = new ioThreadedWriter::ThreadedWriter(&writeDev);
+        writer = new ioThreadedWriter::ThreadedWriter(std::make_unique<ioByteSink::FtdiByteSink>(&writeDev));
     } else {
-        writer = new ioThreadedWriter::ThreadedWriter(outputFilePath);
+        writer = new ioThreadedWriter::ThreadedWriter(std::make_unique<ioByteSink::FileByteSink>(outputFilePath));
     }
     writer->configure(&circBuf, 1, frequencyHz);
 
     printf("--- Starting pipeline ---\n");
-    reader.start();
+    reader->start();
     writer->start();
 
     printf("Running for %d seconds...\n\n", durationSec);
     std::this_thread::sleep_for(std::chrono::seconds(durationSec));
 
     printf("\n--- Stopping pipeline ---\n");
-    reader.stop();
+    reader->stop();
     writer->stop();
 
+    delete reader;
     delete writer;
     printf("\nPipeline complete.\n");
+
+    if (inputFilePath == nullptr) {
+        readDev.close();
+    }
+    if (outputFtdiIndex >= 0) {
+        writeDev.close();
+    }
 
     return EXIT_SUCCESS;
 }

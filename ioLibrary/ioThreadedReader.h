@@ -1,27 +1,32 @@
 #ifndef THREADED_READER_H
 #define THREADED_READER_H
 
-#include "ioFtdiDevice.h"
+#include "ioByteSource.h"
 #include "ioCircularBuffer.h"
-#include <cstddef>
-#include <thread>
 #include <atomic>
+#include <cstddef>
+#include <memory>
+#include <thread>
 
 namespace ioThreadedReader {
 
+/**
+ * Blocking loop: pull `N` bytes per period from a `ByteSource` into a circular buffer.
+ * Timing / threading only — transport policy lives in `ByteSource` implementations.
+ */
 class ThreadedReader {
 private:
-    ioFtdiDevice::FtdiDevice     *device;
+    std::unique_ptr<ioByteSource::ByteSource> byteSource_;
     ioCircularBuffer::CircularBuffer *circBuffer;
-    std::size_t     N;
-    double          frequencyHz;
-    std::thread     readerThread;
+    std::size_t N;
+    double frequencyHz;
+    std::thread readerThread;
     std::atomic<bool> running;
 
     void threadFunc();
 
 public:
-    ThreadedReader(ioFtdiDevice::FtdiDevice *device);
+    explicit ThreadedReader(std::unique_ptr<ioByteSource::ByteSource> byteSource);
     ~ThreadedReader();
 
     void configure(ioCircularBuffer::CircularBuffer *buf, std::size_t N, double frequencyHz);
