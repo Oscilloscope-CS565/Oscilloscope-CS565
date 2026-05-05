@@ -353,22 +353,22 @@ The library is organized into two layers:
 
 **Single-threaded I/O (Phase 1):**
 
-- **FtdiDevice** — Encapsulates the FTDI device handle. All `FT_*` calls (`FT_Open`, `FT_Read`, `FT_Write`, `FT_Close`, etc.) reside exclusively in this class. Destructor calls `close()` automatically.
+- **ioFtdiDevice** — Encapsulates the FTDI device handle. All `FT_*` calls (`FT_Open`, `FT_Read`, `FT_Write`, `FT_Close`, etc.) reside exclusively in this class. Destructor calls `close()` automatically.
 - **ioBuffer** — Manages a heap-allocated byte buffer. Created by the caller and passed into readers/writers (aggregation).
 - **ioWrite** — Takes a `FtdiDevice*` (composition) and `ioBuffer*` (aggregation). Writes M bytes at a configured frequency in a blocking loop.
 - **ioRead** — Takes a `FtdiDevice*` (composition) and `ioBuffer*` (aggregation). Reads N bytes at a configured frequency in a blocking loop.
 
 **Multithreaded Pipeline (Phase 2):**
 
-- **CircularBuffer** — Thread-safe ring buffer using `std::mutex` and `std::condition_variable`. Supports blocking `write()` (producer) and `read()` (consumer). `setDone()` signals the producer is finished so the consumer can drain and exit.
-- **ThreadedReader** — Runs a `std::thread` that reads from an FTDI device and pushes data into a CircularBuffer. Composition to FtdiDevice, aggregation to CircularBuffer.
-- **ThreadedWriter** — Runs a `std::thread` that pulls data from a CircularBuffer and writes to either a file or another FTDI device. Two constructors support both output targets.
+- **ioCircularBuffer** — Thread-safe ring buffer using `std::mutex` and `std::condition_variable`. Supports blocking `write()` (producer) and `read()` (consumer). `setDone()` signals the producer is finished so the consumer can drain and exit.
+- **ioThreadedReader** — Runs a `std::thread` that reads from an FTDI device and pushes data into a CircularBuffer. Composition to FtdiDevice, aggregation to CircularBuffer.
+- **ioThreadedWriter** — Runs a `std::thread` that pulls data from a CircularBuffer and writes to either a file or another FTDI device. Two constructors support both output targets.
 
 ### Data Flow
 
 ```
 ┌──────────────┐       ┌──────────────┐       ┌──────────────┐
-│ThreadedReader │       │CircularBuffer│       │ThreadedWriter │
+│ioThreadedReader │    │ioCircularBuffer│     │ioThreadedWriter │
 │              │       │              │       │              │
 │ FTDI Dev ──> │ ────> │ [ring buffer]│ ────> │ ──> File     │
 │ (read thread)│       │ (thread-safe)│       │     or       │
@@ -381,9 +381,9 @@ The library is organized into two layers:
 
 | From | To | Type | Description |
 |------|----|------|-------------|
-| ioWrite / ioRead | FtdiDevice | Composition | Uses device, does not own it |
+| ioWrite / ioRead | ioFtdiDevice | Composition | Uses device, does not own it |
 | ioWrite / ioRead | ioBuffer | Aggregation | Buffer created externally |
-| ThreadedReader | FtdiDevice | Composition | Uses device, does not own it |
-| ThreadedReader | CircularBuffer | Aggregation | Buffer created externally |
-| ThreadedWriter | FtdiDevice | Composition (0..1) | Optional, nullptr if writing to file |
-| ThreadedWriter | CircularBuffer | Aggregation | Buffer created externally |
+| ioThreadedReader | ioFtdiDevice | Composition | Uses device, does not own it |
+| ioThreadedReader | ioCircularBuffer | Aggregation | Buffer created externally |
+| ioThreadedWriter | ioFtdiDevice | Composition (0..1) | Optional, nullptr if writing to file |
+| ioThreadedWriter | ioCircularBuffer | Aggregation | Buffer created externally |
