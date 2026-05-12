@@ -1,0 +1,68 @@
+{
+  "tests": 10,
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "CircularBuffer",
+      "tests": 5,
+      "testsuite": [
+        {
+          "name": "SingleByteRoundTrip",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_circular_buffer.cpp",
+          "line": 9
+        },
+        {
+          "name": "MultipleBytesPreservesOrder",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_circular_buffer.cpp",
+          "line": 19
+        },
+        {
+          "name": "WrapAroundHeadTail",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_circular_buffer.cpp",
+          "line": 30
+        },
+        {
+          "name": "SetDoneUnblocksReaderOnEmpty",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_circular_buffer.cpp",
+          "line": 45
+        },
+        {
+          "name": "ProducerConsumerConcurrent",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_circular_buffer.cpp",
+          "line": 58
+        }
+      ]
+    },
+    {
+      "name": "ScaleShiftPipeline",
+      "tests": 5,
+      "testsuite": [
+        {
+          "name": "IdentityScaleNoShift",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_scale_shift_pipeline.cpp",
+          "line": 10
+        },
+        {
+          "name": "ScaleAndShiftRounded",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_scale_shift_pipeline.cpp",
+          "line": 39
+        },
+        {
+          "name": "ClampHigh255",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_scale_shift_pipeline.cpp",
+          "line": 59
+        },
+        {
+          "name": "ClampLow0",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_scale_shift_pipeline.cpp",
+          "line": 79
+        },
+        {
+          "name": "BlinkDb0TogglesBit0",
+          "file": "\/Users\/zhongzhangniantong\/Desktop\/Oscilloscope-CS565\/tests\/test_scale_shift_pipeline.cpp",
+          "line": 99
+        }
+      ]
+    }
+  ]
+}

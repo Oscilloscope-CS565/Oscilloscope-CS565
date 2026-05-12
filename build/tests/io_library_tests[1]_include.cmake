@@ -1,0 +1,5 @@
+if(EXISTS "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests[1]_tests.cmake")
+  include("/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests[1]_tests.cmake")
+else()
+  add_test(io_library_tests_NOT_BUILT io_library_tests_NOT_BUILT)
+endif()

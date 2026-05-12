@@ -70,3 +70,9 @@ else()
         ${CMAKE_CURRENT_SOURCE_DIR}/libftd2xx.a
     )
 endif()
+
+option(OSC_BUILD_TESTS "Build GoogleTest unit tests for ioLibrary" ON)
+if(OSC_BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()

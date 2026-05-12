@@ -1,0 +1,13 @@
+io_library_tests_autogen/timestamp: \
+	/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.cpp \
+	/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioCircularBuffer.h \
+	/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioScaleShiftPipeline.cpp \
+	/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary/ioScaleShiftPipeline.h \
+	/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/tests/CMakeLists.txt \
+	/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/tests/test_circular_buffer.cpp \
+	/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/tests/test_scale_shift_pipeline.cpp \
+	/opt/homebrew/share/cmake/Modules/ExternalProject/shared_internal_commands.cmake \
+	/opt/homebrew/share/cmake/Modules/FetchContent.cmake \
+	/opt/homebrew/share/cmake/Modules/FetchContent/CMakeLists.cmake.in \
+	/opt/homebrew/share/cmake/Modules/GoogleTest.cmake \
+	/opt/homebrew/bin/cmake

@@ -1,0 +1,273 @@
+Start testing: May 13 07:01 CST
+----------------------------------------------------------
+1/10 Testing: CircularBuffer.SingleByteRoundTrip
+1/10 Test: CircularBuffer.SingleByteRoundTrip
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=CircularBuffer.SingleByteRoundTrip" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"CircularBuffer.SingleByteRoundTrip" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = CircularBuffer.SingleByteRoundTrip
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CircularBuffer
+[ RUN      ] CircularBuffer.SingleByteRoundTrip
+[       OK ] CircularBuffer.SingleByteRoundTrip (0 ms)
+[----------] 1 test from CircularBuffer (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"CircularBuffer.SingleByteRoundTrip" end time: May 13 07:01 CST
+"CircularBuffer.SingleByteRoundTrip" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/10 Testing: CircularBuffer.MultipleBytesPreservesOrder
+2/10 Test: CircularBuffer.MultipleBytesPreservesOrder
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=CircularBuffer.MultipleBytesPreservesOrder" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"CircularBuffer.MultipleBytesPreservesOrder" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = CircularBuffer.MultipleBytesPreservesOrder
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CircularBuffer
+[ RUN      ] CircularBuffer.MultipleBytesPreservesOrder
+[       OK ] CircularBuffer.MultipleBytesPreservesOrder (0 ms)
+[----------] 1 test from CircularBuffer (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"CircularBuffer.MultipleBytesPreservesOrder" end time: May 13 07:01 CST
+"CircularBuffer.MultipleBytesPreservesOrder" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/10 Testing: CircularBuffer.WrapAroundHeadTail
+3/10 Test: CircularBuffer.WrapAroundHeadTail
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=CircularBuffer.WrapAroundHeadTail" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"CircularBuffer.WrapAroundHeadTail" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = CircularBuffer.WrapAroundHeadTail
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CircularBuffer
+[ RUN      ] CircularBuffer.WrapAroundHeadTail
+[       OK ] CircularBuffer.WrapAroundHeadTail (0 ms)
+[----------] 1 test from CircularBuffer (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"CircularBuffer.WrapAroundHeadTail" end time: May 13 07:01 CST
+"CircularBuffer.WrapAroundHeadTail" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/10 Testing: CircularBuffer.SetDoneUnblocksReaderOnEmpty
+4/10 Test: CircularBuffer.SetDoneUnblocksReaderOnEmpty
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=CircularBuffer.SetDoneUnblocksReaderOnEmpty" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"CircularBuffer.SetDoneUnblocksReaderOnEmpty" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = CircularBuffer.SetDoneUnblocksReaderOnEmpty
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CircularBuffer
+[ RUN      ] CircularBuffer.SetDoneUnblocksReaderOnEmpty
+[       OK ] CircularBuffer.SetDoneUnblocksReaderOnEmpty (22 ms)
+[----------] 1 test from CircularBuffer (22 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (22 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"CircularBuffer.SetDoneUnblocksReaderOnEmpty" end time: May 13 07:01 CST
+"CircularBuffer.SetDoneUnblocksReaderOnEmpty" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/10 Testing: CircularBuffer.ProducerConsumerConcurrent
+5/10 Test: CircularBuffer.ProducerConsumerConcurrent
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=CircularBuffer.ProducerConsumerConcurrent" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"CircularBuffer.ProducerConsumerConcurrent" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = CircularBuffer.ProducerConsumerConcurrent
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CircularBuffer
+[ RUN      ] CircularBuffer.ProducerConsumerConcurrent
+[       OK ] CircularBuffer.ProducerConsumerConcurrent (15 ms)
+[----------] 1 test from CircularBuffer (15 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (15 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"CircularBuffer.ProducerConsumerConcurrent" end time: May 13 07:01 CST
+"CircularBuffer.ProducerConsumerConcurrent" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/10 Testing: ScaleShiftPipeline.IdentityScaleNoShift
+6/10 Test: ScaleShiftPipeline.IdentityScaleNoShift
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=ScaleShiftPipeline.IdentityScaleNoShift" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"ScaleShiftPipeline.IdentityScaleNoShift" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ScaleShiftPipeline.IdentityScaleNoShift
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ScaleShiftPipeline
+[ RUN      ] ScaleShiftPipeline.IdentityScaleNoShift
+[       OK ] ScaleShiftPipeline.IdentityScaleNoShift (104 ms)
+[----------] 1 test from ScaleShiftPipeline (104 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (104 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"ScaleShiftPipeline.IdentityScaleNoShift" end time: May 13 07:01 CST
+"ScaleShiftPipeline.IdentityScaleNoShift" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/10 Testing: ScaleShiftPipeline.ScaleAndShiftRounded
+7/10 Test: ScaleShiftPipeline.ScaleAndShiftRounded
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=ScaleShiftPipeline.ScaleAndShiftRounded" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"ScaleShiftPipeline.ScaleAndShiftRounded" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ScaleShiftPipeline.ScaleAndShiftRounded
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ScaleShiftPipeline
+[ RUN      ] ScaleShiftPipeline.ScaleAndShiftRounded
+[       OK ] ScaleShiftPipeline.ScaleAndShiftRounded (102 ms)
+[----------] 1 test from ScaleShiftPipeline (103 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (103 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"ScaleShiftPipeline.ScaleAndShiftRounded" end time: May 13 07:01 CST
+"ScaleShiftPipeline.ScaleAndShiftRounded" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/10 Testing: ScaleShiftPipeline.ClampHigh255
+8/10 Test: ScaleShiftPipeline.ClampHigh255
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=ScaleShiftPipeline.ClampHigh255" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"ScaleShiftPipeline.ClampHigh255" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ScaleShiftPipeline.ClampHigh255
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ScaleShiftPipeline
+[ RUN      ] ScaleShiftPipeline.ClampHigh255
+[       OK ] ScaleShiftPipeline.ClampHigh255 (102 ms)
+[----------] 1 test from ScaleShiftPipeline (102 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (102 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"ScaleShiftPipeline.ClampHigh255" end time: May 13 07:01 CST
+"ScaleShiftPipeline.ClampHigh255" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/10 Testing: ScaleShiftPipeline.ClampLow0
+9/10 Test: ScaleShiftPipeline.ClampLow0
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=ScaleShiftPipeline.ClampLow0" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"ScaleShiftPipeline.ClampLow0" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ScaleShiftPipeline.ClampLow0
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ScaleShiftPipeline
+[ RUN      ] ScaleShiftPipeline.ClampLow0
+[       OK ] ScaleShiftPipeline.ClampLow0 (105 ms)
+[----------] 1 test from ScaleShiftPipeline (105 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (105 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"ScaleShiftPipeline.ClampLow0" end time: May 13 07:01 CST
+"ScaleShiftPipeline.ClampLow0" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/10 Testing: ScaleShiftPipeline.BlinkDb0TogglesBit0
+10/10 Test: ScaleShiftPipeline.BlinkDb0TogglesBit0
+Command: "/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests/io_library_tests" "--gtest_filter=ScaleShiftPipeline.BlinkDb0TogglesBit0" "--gtest_also_run_disabled_tests"
+Directory: /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/tests
+"ScaleShiftPipeline.BlinkDb0TogglesBit0" start time: May 13 07:01 CST
+Output:
+----------------------------------------------------------
+Running main() from /Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ScaleShiftPipeline.BlinkDb0TogglesBit0
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ScaleShiftPipeline
+[ RUN      ] ScaleShiftPipeline.BlinkDb0TogglesBit0
+[       OK ] ScaleShiftPipeline.BlinkDb0TogglesBit0 (103 ms)
+[----------] 1 test from ScaleShiftPipeline (103 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (103 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"ScaleShiftPipeline.BlinkDb0TogglesBit0" end time: May 13 07:01 CST
+"ScaleShiftPipeline.BlinkDb0TogglesBit0" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 13 07:01 CST

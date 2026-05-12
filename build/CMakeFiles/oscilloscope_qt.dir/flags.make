@@ -6,5 +6,7 @@ CXX_DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
 
 CXX_INCLUDES = -I/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/build/oscilloscope_qt_autogen/include -I/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565 -I/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ioLibrary -I/Users/zhongzhangniantong/Desktop/Oscilloscope-CS565/ui -isystem /opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers -iframework /opt/homebrew/opt/qt/lib -isystem /opt/homebrew/opt/qt/lib/QtCore.framework/Headers -isystem /opt/homebrew/opt/qt/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/opt/qt/include -isystem /opt/homebrew/opt/qt/lib/QtGui.framework/Headers
 
-CXX_FLAGS = -g -std=gnu++17
+CXX_FLAGSarm64 = -g -std=gnu++17 -arch arm64
+
+CXX_FLAGS = -g -std=gnu++17 -arch arm64
 
