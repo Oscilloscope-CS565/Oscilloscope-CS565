@@ -1,0 +1,11 @@
+CircularBuffer.SingleByteRoundTrip 3 0.00106672
+CircularBuffer.MultipleBytesPreservesOrder 3 0.000950194
+CircularBuffer.WrapAroundHeadTail 3 0.00140437
+CircularBuffer.SetDoneUnblocksReaderOnEmpty 3 0.00876533
+CircularBuffer.ProducerConsumerConcurrent 3 0.0106764
+ScaleShiftPipeline.IdentityScaleNoShift 3 0.0367942
+ScaleShiftPipeline.ScaleAndShiftRounded 3 0.0353453
+ScaleShiftPipeline.ClampHigh255 3 0.0351114
+ScaleShiftPipeline.ClampLow0 3 0.0360967
+ScaleShiftPipeline.BlinkDb0TogglesBit0 3 0.0353298
+---

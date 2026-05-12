@@ -24,7 +24,8 @@ FT245R/
 │   ├── ioCompactOscilloscopeView.* / ioWorkspaceOscilloscopeView.* # Two concrete Qt views
 │   └── ioWaveformWidget.*          # Signal display widget
 ├── qt_main.cpp                     # Qt application entry
-├── CMakeLists.txt                  # Qt 6 + Widgets + libioLibrary + libftd2xx.a
+├── CMakeLists.txt                  # Qt 6 + Widgets + libioLibrary + libftd2xx.a + optional unit tests
+├── tests/                          # GoogleTest: CircularBuffer + ScaleShiftPipeline (no hardware)
 ├── main.cpp                        # Blink demo: LED at 1Hz and 2Hz
 ├── pipeline.cpp                    # Multithreaded data acquisition pipeline
 ├── Makefile                        # Build system (g++ -std=c++11 -pthread)
@@ -119,6 +120,18 @@ cmake -S . -B build -DCMAKE_PREFIX_PATH="$(brew --prefix qt)"
 cmake --build build
 ./build/oscilloscope_qt
 ```
+
+#### Unit tests (`ioLibrary`, no FTDI hardware)
+
+GoogleTest exercises `CircularBuffer` and `ScaleShiftPipeline` (scale/shift/clamp/blink). Enabled by default (`OSC_BUILD_TESTS=ON`).
+
+```bash
+cmake -S . -B build -DCMAKE_PREFIX_PATH="$(brew --prefix qt)"
+cmake --build build --target io_library_tests
+ctest --test-dir build --output-on-failure
+```
+
+To skip tests and avoid downloading GoogleTest: `cmake -S . -B build -DOSC_BUILD_TESTS=OFF`.
 
 If CMake cannot find Qt, set `CMAKE_PREFIX_PATH` to your Qt install, e.g. `~/Qt/6.8.0/macos`.
 
