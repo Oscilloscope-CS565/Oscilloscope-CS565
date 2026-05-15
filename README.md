@@ -8,14 +8,16 @@ Figma link: https://www.figma.com/make/zhjeJXZHEork6O5gXgszK4/Untitled?t=eDVLhgx
 
 ```
 FT245R/
-├── ioLibrary/                      # Reusable FTDI I/O library (static, C++)
+├── ioLibrary/                      # Reusable FTDI I/O library (static, C++17)
 │   ├── ioFtdiDevice.h / .cpp       # Device class: wraps all FT_* calls
 │   ├── ioBuffer.h / .cpp           # Simple buffer management
 │   ├── ioWrite.h  / .cpp           # Single-threaded frequency-timed write
 │   ├── ioRead.h   / .cpp           # Single-threaded frequency-timed read
+│   ├── ioByteSource.h / .cpp       # Read abstraction (FtdiByteSource, FileByteSource)
+│   ├── ioByteSink.h   / .cpp       # Write abstraction (FtdiByteSink, FileByteSink)
 │   ├── ioCircularBuffer.h / .cpp   # Thread-safe ring buffer (mutex + condvar)
-│   ├── ioThreadedReader.h / .cpp   # Multithreaded FTDI reader (producer)
-│   ├── ioThreadedWriter.h / .cpp   # Multithreaded writer to file or FTDI (consumer)
+│   ├── ioThreadedReader.h / .cpp   # Multithreaded producer driven by a ByteSource
+│   ├── ioThreadedWriter.h / .cpp   # Multithreaded consumer driven by a ByteSink
 │   └── ioScaleShiftPipeline.h / .cpp # Pipeline stage: scale + shift between two ring buffers
 ├── ui/                             # Qt MVC GUI (CMake target oscilloscope_qt)
 │   ├── ioOscilloscopeModel.*       # Model: FTDI + dual circular buffers + pipeline thread
@@ -28,7 +30,7 @@ FT245R/
 ├── tests/                          # GoogleTest: CircularBuffer + ScaleShiftPipeline (no hardware)
 ├── main.cpp                        # Blink demo: LED at 1Hz and 2Hz
 ├── pipeline.cpp                    # Multithreaded data acquisition pipeline
-├── Makefile                        # Build system (g++ -std=c++11 -pthread)
+├── Makefile                        # Build system (g++ -std=c++17 -pthread)
 ├── controller.c                    # Legacy: menu-driven controller (C)
 ├── LED_Project.c                   # Legacy: interactive LED pin control (C)
 ├── morse_Project.c                 # Legacy: Morse code via LED (C)
@@ -68,6 +70,46 @@ UM245R DB0 ──── jumper wire ──── resistor (220 ohm) ────
 
 **Important**: The circuit must form a closed loop: DB0 -> resistor -> LED -> GND.
 
+## Quick Start — How to Run
+
+The repo ships four runnable targets. Pick the one that matches what you want to demo:
+
+| Target | Build system | What it does | Needs hardware? |
+|--------|--------------|--------------|-----------------|
+| `oscilloscope_qt` | CMake (Qt 6) | Full GUI oscilloscope (reader → pipeline → writer, live waveform) | Yes, to acquire real data; UI still launches without it |
+| `pipeline` | Makefile | CLI multithreaded acquisition pipeline (FTDI → file or second FTDI) | Yes |
+| `blink_test` | Makefile | LED blink demo at 1 Hz then 2 Hz on DB0 | Yes (FTDI + LED) |
+| `controller` | Makefile (legacy C) | Menu-driven LED / Morse / byte I/O | Yes (FTDI + LED) |
+| `io_library_tests` | CMake + GoogleTest | Unit tests for `CircularBuffer` + `ScaleShiftPipeline` | No |
+
+### One-line per target (macOS)
+
+```bash
+# GUI oscilloscope
+cmake -S . -B build -DCMAKE_PREFIX_PATH="$(brew --prefix qt)" && cmake --build build && ./build/oscilloscope_qt
+
+# CLI pipeline → file
+make pipeline && ./pipeline --output-file output.bin --freq 5 --duration 5
+
+# LED blink demo
+make blink_test && ./blink_test
+
+# Unit tests (no hardware)
+cmake -S . -B build -DCMAKE_PREFIX_PATH="$(brew --prefix qt)" && cmake --build build --target io_library_tests && ctest --test-dir build --output-on-failure
+
+# Legacy C controller (interactive menu)
+make controller && ./controller
+```
+
+### Recommended first run
+
+1. Plug in the UM245R and wire DB0 → 220 Ω resistor → LED(+) → LED(−) → GND (see **Hardware Setup**).
+2. Confirm the toolchain works without hardware by running the unit tests above.
+3. Build and launch `blink_test` — you should see the LED toggle at 1 Hz then 2 Hz.
+4. Build and launch `oscilloscope_qt`, press **Start** to begin acquisition. Toggle **Toggle DB0 every sample** to see a software-generated square wave on the LED + waveform plot.
+
+If a step fails, jump to the matching detailed section below (Qt GUI, pipeline, blink_test) or to **Troubleshooting**.
+
 ## Build & Run
 
 ### Build All
@@ -86,7 +128,7 @@ Requires **Qt 6** (Widgets module), **CMake** 3.16+, and a **C++17** compiler. T
 
 #### Architecture (short)
 
-- **Model** (`ioOscilloscopeModel`): opens FTDI device(s), runs `ThreadedReader` → raw ring buffer → `ScaleShiftPipeline` (scale/shift + optional DB0 toggle) → second ring buffer → `ThreadedWriter` (file, same device write-back, or second FTDI). Emits waveform samples and log lines.
+- **Model** (`ioOscilloscopeModel`): opens FTDI device(s), wires a `ByteSource` into `ThreadedReader` → raw ring buffer → `ScaleShiftPipeline` (scale/shift + optional DB0 toggle) → second ring buffer → `ThreadedWriter` driven by a `ByteSink` (file, same device write-back, or second FTDI). Emits waveform samples and log lines.
 - **Controller** (`ioMainWindow`): switches between views, connects model signals (errors, samples, log).
 - **Views**: `CompactOscilloscopeView` and `WorkspaceOscilloscopeView` implement `AbstractOscilloscopeView` — same controls, different layout. **View** menu toggles them.
 
@@ -360,43 +402,48 @@ This output is expected for your current setup.
 
 ## Architecture
 
-### ioLibrary — 7 C++ Classes
+### ioLibrary — 9 C++ Classes
 
-The library is organized into two layers:
+The library is organized into three layers (all under `io*` namespaces):
 
 **Single-threaded I/O (Phase 1):**
 
-- **ioFtdiDevice** — Encapsulates the FTDI device handle. All `FT_*` calls (`FT_Open`, `FT_Read`, `FT_Write`, `FT_Close`, etc.) reside exclusively in this class. Destructor calls `close()` automatically.
-- **ioBuffer** — Manages a heap-allocated byte buffer. Created by the caller and passed into readers/writers (aggregation).
-- **ioWrite** — Takes a `FtdiDevice*` (composition) and `ioBuffer*` (aggregation). Writes M bytes at a configured frequency in a blocking loop.
-- **ioRead** — Takes a `FtdiDevice*` (composition) and `ioBuffer*` (aggregation). Reads N bytes at a configured frequency in a blocking loop.
+- **ioFtdiDevice::FtdiDevice** — Encapsulates the FTDI device handle. All `FT_*` calls (`FT_Open`, `FT_Read`, `FT_Write`, `FT_Close`, etc.) reside exclusively in this class. Destructor calls `close()` automatically.
+- **ioBuffer::Buffer** — Manages a heap-allocated byte buffer. Created by the caller and passed into readers/writers (aggregation).
+- **ioWrite::Write** — Takes a `FtdiDevice*` (composition) and `Buffer*` (aggregation). Writes M bytes at a configured frequency in a blocking loop.
+- **ioRead::Read** — Takes a `FtdiDevice*` (composition) and `Buffer*` (aggregation). Reads N bytes at a configured frequency in a blocking loop.
 
-**Multithreaded Pipeline (Phase 2):**
+**Transport Abstractions (Phase 2a):**
 
-- **ioCircularBuffer** — Thread-safe ring buffer using `std::mutex` and `std::condition_variable`. Supports blocking `write()` (producer) and `read()` (consumer). `setDone()` signals the producer is finished so the consumer can drain and exit.
-- **ioThreadedReader** — Runs a `std::thread` that reads from an FTDI device and pushes data into a CircularBuffer. Composition to FtdiDevice, aggregation to CircularBuffer.
-- **ioThreadedWriter** — Runs a `std::thread` that pulls data from a CircularBuffer and writes to either a file or another FTDI device. Two constructors support both output targets.
+- **ioByteSource::ByteSource** — Interface for fixed-size byte producers. Concrete implementations: `FtdiByteSource` (reads from an `FtdiDevice`) and `FileByteSource` (replays a capture file). Keeps transport policy out of the threading code.
+- **ioByteSink::ByteSink** — Interface for fixed-size byte consumers. Concrete implementations: `FtdiByteSink` (writes to an `FtdiDevice`) and `FileByteSink` (appends to a capture file, flushes after each write).
+
+**Multithreaded Pipeline (Phase 2b):**
+
+- **ioCircularBuffer::CircularBuffer** — Thread-safe ring buffer using `std::mutex` and `std::condition_variable`. Supports blocking `write()` (producer) and `read()` (consumer). `setDone()` signals the producer is finished so the consumer can drain and exit.
+- **ioThreadedReader::ThreadedReader** — Owns a `ByteSource` (via `std::unique_ptr`) and runs a `std::thread` that pulls N bytes per period and pushes them into a CircularBuffer. Transport-agnostic; aggregation to CircularBuffer.
+- **ioThreadedWriter::ThreadedWriter** — Owns a `ByteSink` (via `std::unique_ptr`) and runs a `std::thread` that drains M bytes per period from a CircularBuffer into the sink. One constructor, one path — the choice of file vs. FTDI lives entirely in the injected sink.
 
 ### Data Flow
 
 ```
-┌──────────────┐       ┌──────────────┐       ┌──────────────┐
-│ioThreadedReader │    │ioCircularBuffer│     │ioThreadedWriter │
-│              │       │              │       │              │
-│ FTDI Dev ──> │ ────> │ [ring buffer]│ ────> │ ──> File     │
-│ (read thread)│       │ (thread-safe)│       │     or       │
-│              │       │              │       │ ──> FTDI Dev │
-└──────────────┘       └──────────────┘       └──────────────┘
-    Producer               Pipeline              Consumer
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│  ByteSource  │ -> │ThreadedReader│ -> │CircularBuffer│ -> │ThreadedWriter│ -> │   ByteSink   │
+│ FTDI or File │    │ (read thread)│    │ (mutex+cv)   │    │(write thread)│    │ FTDI or File │
+└──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘
+                        Producer            Pipeline            Consumer
 ```
+
+The model can splice a `ScaleShiftPipeline` between two `CircularBuffer`s (raw → processed) to apply per-byte gain/offset and the optional DB0 toggle.
 
 ### UML Relationships
 
 | From | To | Type | Description |
 |------|----|------|-------------|
-| ioWrite / ioRead | ioFtdiDevice | Composition | Uses device, does not own it |
-| ioWrite / ioRead | ioBuffer | Aggregation | Buffer created externally |
-| ioThreadedReader | ioFtdiDevice | Composition | Uses device, does not own it |
-| ioThreadedReader | ioCircularBuffer | Aggregation | Buffer created externally |
-| ioThreadedWriter | ioFtdiDevice | Composition (0..1) | Optional, nullptr if writing to file |
-| ioThreadedWriter | ioCircularBuffer | Aggregation | Buffer created externally |
+| ioWrite / ioRead | ioFtdiDevice::FtdiDevice | Composition | Uses device, does not own it |
+| ioWrite / ioRead | ioBuffer::Buffer | Aggregation | Buffer created externally |
+| FtdiByteSource / FtdiByteSink | ioFtdiDevice::FtdiDevice | Composition | Uses device, does not own it |
+| ioThreadedReader | ioByteSource::ByteSource | Ownership (unique_ptr) | Reader owns the injected source |
+| ioThreadedReader | ioCircularBuffer::CircularBuffer | Aggregation | Buffer created externally |
+| ioThreadedWriter | ioByteSink::ByteSink | Ownership (unique_ptr) | Writer owns the injected sink |
+| ioThreadedWriter | ioCircularBuffer::CircularBuffer | Aggregation | Buffer created externally |
